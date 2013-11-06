@@ -1,0 +1,7 @@
+parameters:
+#    guard_apiv1.example.class: Guard\Api\v1Bundle\Example
+
+services:
+#    guard_apiv1.example:
+#        class: %guard_apiv1.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

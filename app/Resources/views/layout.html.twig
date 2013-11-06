@@ -1,0 +1,70 @@
+{% extends "::base.html.twig" %}
+
+{% block title %} Guard Gamelle {% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('bundles/guard/css/bootstrap.css') }}" type="text/css" />
+{% endblock %}
+
+{% block body %}
+{% block navbar %}
+<div style="margin-top: 70px;">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ path('guard_common_public_homepage') }}">Guard Gamelle</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                {% block navbar_left %}
+                    <li class="{% if( get_bundle_name() == "GuardCommonPublicBundle" and get_controller_name() == "default" and get_action_name() == "index" ) %}active{% endif %}"><a href="{{ path('guard_common_public_homepage') }}">Accueil</a></li>
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <li class="{% if( get_bundle_name() == "GuardCommonAnimalBundle" and get_controller_name() == "default" and get_action_name() == "index" ) %}active{% endif %}"><a href="{{ path('guard_common_animal_homepage') }}">Animaux</a></li>
+                    <li class="{% if( get_bundle_name() == "GuardCommonGamelleBundle" and get_controller_name() == "default" and get_action_name() == "index" ) %}active{% endif %}"><a href="{{ path('guard_common_public_homepage') }}">Gamelles</a></li>
+                    {% endif %}
+                {% endblock %}
+                </ul>
+                <ul class="nav navbar-nav navbar-right" style="margin-right: 0px;">
+                {% block navbar_right %}
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> {{ app.user.username }} <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ path('fos_user_profile_show') }}">Profile</a></li>
+                            <li class="divider"></li>
+                            <li><a href="{{ path('fos_user_security_logout') }}"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
+                        </ul>
+                    </li>
+                    <li><button class="btn btn-danger navbar-btn" onclick="document.location = '{{ path('fos_user_security_logout') }}';"><i class="glyphicon glyphicon-log-out"></i> Logout</button></li>
+                {% else %}
+                    <li><button style="margin-right: 5px;" class="btn btn-primary navbar-btn" onclick="document.location = '/';"><i class="glyphicon glyphicon-plus"></i> Inscription</button></li>
+                    <li><button style="margin-right: 0px;" class="btn btn-success navbar-btn" onclick="document.location = '{{ path('guard_common_user_login') }}';"><i class="glyphicon glyphicon-log-in"></i> Login</button></li>
+                {% endif %}
+                {% endblock %}
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div>
+    </nav>
+</div>
+{% endblock %}
+
+{% block subnavbar %}{% endblock %}
+
+{% block main %}{% endblock %}
+
+{% endblock %}
+
+{% block javascripts %}
+{# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
+<script type="text/javascript" src="{{ asset('bundles/guard/js/jquery-1.10.2.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/guard/js/bootstrap.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,3 @@
+guard_common_public_homepage:
+    pattern:  /
+    defaults: { _controller: GuardCommonPublicBundle:Default:index }

@@ -1,0 +1,14 @@
+parameters:
+#    guard_common_animal.example.class: Guard\Common\AnimalBundle\Example
+
+services:
+#    guard_common_animal.example:
+#        class: %guard_common_animal.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+    request:
+        class:        Symfony\Component\HttpFoundation\Request
+    acme.twig.extension:
+        class: Acme\PageBundle\Twig\Extension\AcmePageExtension
+        arguments:  [@request]
+        tags:
+            - { name: 'twig.extension' }

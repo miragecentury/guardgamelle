@@ -1,0 +1,3 @@
+guard_common_user_login:
+    pattern:  /login
+    defaults: { _controller: GuardCommonUserBundle:Security:login }

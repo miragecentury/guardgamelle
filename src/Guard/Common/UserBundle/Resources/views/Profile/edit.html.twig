@@ -1,0 +1,17 @@
+{%extends "::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Profile{% endblock %}
+
+
+
+{% block main %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            {% block fos_user_content %}
+            {% include "FOSUserBundle:Profile:edit_content.html.twig" %}
+            {% endblock fos_user_content %}
+        </div>
+    </div>
+</div>
+{% endblock %}

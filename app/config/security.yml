@@ -1,0 +1,42 @@
+security:
+    encoders:
+        Guard\Common\UserBundle\Entity\User: sha512
+
+    providers:
+        main:
+            id: fos_user.user_provider.username_email
+#        in_memory:
+#            memory:
+#                users:
+#                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
+#                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+
+    firewalls:
+        # … le pare-feu « dev »
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        # Firewall principal pour le reste de notre site
+        main:
+            pattern:        ^/
+            anonymous:      true
+            provider:       main
+            form_login:
+                login_path: guard_common_user_login
+                check_path: fos_user_security_check
+            logout:
+                path:       fos_user_security_logout
+                target:     /
+            remember_me:
+                key:        %secret% # %secret% est un paramètre de parameters.yml
+       
+        login:
+            pattern:  ^/login$
+            security: false
+        inscription:
+            pattern:  ^/inscription$
+            security: false
+            #http_basic:
+            #    realm: "Secured Demo Area"
+
+    access_control:

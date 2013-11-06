@@ -1,0 +1,17 @@
+guard_common_animal_homepage:
+    pattern:  /animal
+    defaults: { _controller: GuardCommonAnimalBundle:Default:index }
+guard_common_animal_add:
+    pattern: /animal/new
+    defaults: {_controller: GuardCommonAnimalBundle:Default:new }
+guard_common_animal_del:
+    pattern: /animal/delete
+    defaults: {_controller: GuardCommonAnimalBundle:Default:delete }
+guard_common_animal_update:
+    pattern: /animal/update
+    defaults: {_controller: GuardCommonAnimalBundle:Default:update }
+guard_common_animal_detail:
+    pattern: /animal/{id}
+    defaults: { _controller: GuardCommonAnimalBundle:Default:detail }
+    requirements:
+        id: \d+
