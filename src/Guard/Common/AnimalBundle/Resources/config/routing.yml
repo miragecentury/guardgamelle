@@ -7,6 +7,11 @@ guard_common_animal_race:
 guard_common_animal_race_new:
     pattern: /race/new
     defaults: { _controller:GuardCommonAnimalBundle:Race:new }
+guard_common_animal_race_delete:
+    pattern: /race/delete/{id}
+    defaults: { _controller:GuardCommonAnimalBundle:Race:delete }
+    requirements:
+        id: \d+
 #guard_common_animal_add:
 #    pattern: /animal/new
 #    defaults: {_controller: GuardCommonAnimalBundle:Default:new }

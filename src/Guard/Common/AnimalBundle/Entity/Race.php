@@ -69,4 +69,13 @@ class Race {
         $this->type = $type;
     }
 
+    public function getAnimaux() {
+        return $this->animaux;
+    }
+
+    public function setAnimaux($animaux) {
+        $this->animaux = $animaux;
+    }
+
+
 }

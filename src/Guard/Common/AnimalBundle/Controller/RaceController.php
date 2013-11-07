@@ -29,8 +29,25 @@ class RaceController extends Controller {
         return $this->render('GuardCommonAnimalBundle:Race:add.html.twig', array('form' => $form->createView()));
     }
 
-    public function deleteAction() {
-        return $this->render('GuardCommonAnimalBundle:Default:index.html.twig', array());
+    public function deleteAction($id) {
+        $formBuilder = $this->createFormBuilder();
+        $formBuilder
+                ->add("check", "submit")
+                ->add("annuler", "submit")
+        ;
+        $form = $formBuilder->getForm();
+
+        $RaceRepo = $this->getDoctrine()->getManager()->getRepository("GuardCommonAnimalBundle:Race");
+        $Race = $RaceRepo->find($id);
+
+        if ($this->getRequest()->isMethod("POST")) {
+            $form->submit($this->getRequest());
+            if ($form->isValid()) {
+                $this->get('session')->getFlashBag()->add('race', 'Race bien supprimé');
+                return $this->redirect($this->generateUrl("guard_common_animal_race"));
+            }
+        }
+        return $this->render('GuardCommonAnimalBundle:Race:delete.html.twig', array());
     }
 
 }
