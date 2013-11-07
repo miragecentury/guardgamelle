@@ -24,15 +24,18 @@ class DefaultController extends Controller {
                 $errorIdList = $this->get('validator')->validateValue($request->id, $idConstraint);
                 $errorDateList = $this->get('validator')->validateValue($d->setTimestamp($request->date), $dateConstraint);
                 $errorStateList = $this->get('validator')->validateValue($request->state, $stateConstraint);
-                if (count($errorIdList)!=0 || count($errorDateList)!=0 || count($errorStateList)!=0 || $d->setTimestamp($request->date) > new \DateTime('NOW')){ 
-                    return new response($errorDateList,500);
+                if (count($errorIdList) != 0 || count($errorDateList) != 0 || count($errorStateList) != 0 || $d->setTimestamp($request->date) > new \DateTime('NOW')) {
+                    return new response($errorDateList, 500);
                 }
+
+
+
                 return new Response("", 200);
             } else {
-                return new Response("", 404);
+                return new Response("", 500);
             }
         } else {
-            return new Response("", 404);
+            return new Response("", 500);
         }
     }
 

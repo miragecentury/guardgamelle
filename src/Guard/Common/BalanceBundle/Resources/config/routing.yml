@@ -1,0 +1,3 @@
+guard_common_balance_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: GuardCommonBalanceBundle:Default:index }

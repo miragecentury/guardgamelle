@@ -51,7 +51,7 @@ class Animal {
     protected $race;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Guard\Common\UserBundle\Entity\User", inversedBy="animals")
+     * @ORM\ManyToOne(targetEntity="Guard\Common\UserBundle\Entity\User", inversedBy="animaux")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $proprio;
@@ -103,7 +103,7 @@ class Animal {
     public function setRace($race) {
         $this->race = $race;
     }
-
+    
     public function setProprio($proprio) {
         $this->proprio = $proprio;
     }

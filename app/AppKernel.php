@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new Guard\Api\v1Bundle\GuardApiv1Bundle(),
             new Guard\Common\AnimalBundle\GuardCommonAnimalBundle(),
             new Guard\Common\GamelleBundle\GuardCommonGamelleBundle(),
+            new Guard\Common\BalanceBundle\GuardCommonBalanceBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

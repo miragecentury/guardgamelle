@@ -1,3 +1,6 @@
-guard_apiv1_homepage:
-    pattern:  /api/v1/push
+guard_apiv1_gamelle_push:
+    pattern:  /api/v1/gamelle/push
     defaults: { _controller: GuardApiv1Bundle:Default:index }
+guard_apiv1_balance_push:
+    pattern:  /api/v1/balance/push
+    defaults: { _controller: GuardApiv1Bundle:Balance:index }

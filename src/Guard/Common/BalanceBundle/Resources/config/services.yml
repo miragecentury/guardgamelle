@@ -1,0 +1,7 @@
+parameters:
+#    guard_common_balance.example.class: Guard\Common\BalanceBundle\Example
+
+services:
+#    guard_common_balance.example:
+#        class: %guard_common_balance.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
