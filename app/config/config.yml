@@ -46,25 +46,41 @@ doctrine:
         connections:
             default:
                 driver:   %database_driver%
-                host:     tel:173.194.106.53
-                port:     %database_port%
-                dbname:   %database_name%
-                user:     root
-                password: gu4rdg4m3l
-                charset:  UTF8
-            google:
-                driver:   %database_driver%
                 host:     %database_host%
                 port:     %database_port%
                 dbname:   %database_name%
                 user:     %database_user%
                 password: %database_password%
                 charset:  UTF8
+            google:
+                driver:   %database_driver%
+                host:     173.194.106.53
+                port:     %database_port%
+                dbname:   guardgamelle
+                user:     root
+                password: gu4rdg4m3l
+                charset:  UTF8
             
                 
     orm:
         auto_generate_proxy_classes: %kernel.debug%
-        auto_mapping: true
+        default_entity_manager:   default
+#        auto_mapping: true
+        entity_managers:
+            default:
+                connection: default
+                auto_mapping: false
+                mappings:
+                    AcmeDemoBundle: ~
+                    GuardCommonAnimalBundle: ~
+                    GuardCommonUserBundle: ~
+                    GuardCommonPublicBundle: ~
+                    GuardCommonGamelleBundle: ~
+            google:
+                connection: google
+                auto_mapping: false
+                mappings:
+                    GuardCommonEventBundle: ~
 
 # Swiftmailer Configuration
 swiftmailer:

@@ -1,3 +1,7 @@
+guard_common_event:
+    resource: "@GuardCommonEventBundle/Resources/config/routing.yml"
+    prefix:   /
+
 guard_common_balance:
     resource: "@GuardCommonBalanceBundle/Resources/config/routing.yml"
     prefix:   /

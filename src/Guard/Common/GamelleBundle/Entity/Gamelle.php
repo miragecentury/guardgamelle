@@ -12,6 +12,7 @@ namespace Guard\Common\GamelleBundle\Entity;
 // En effet, il existe d'autres annotations, on le verra par la suite, qui utiliseront un autre namespace
 use Doctrine\ORM\Mapping as ORM;
 use Guard\Common\UserBundle\Entity\User;
+use Guard\Common\EventBundle\Entity\EventGamelle;
 
 /**
  * @ORM\Entity

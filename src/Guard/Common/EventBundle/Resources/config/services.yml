@@ -1,0 +1,7 @@
+parameters:
+#    guard_common_event.example.class: Guard\Common\EventBundle\Example
+
+services:
+#    guard_common_event.example:
+#        class: %guard_common_event.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
