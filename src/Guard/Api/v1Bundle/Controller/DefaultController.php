@@ -32,10 +32,15 @@ class DefaultController extends Controller {
 
                 $eventGamelle = new EventGamelle();
                 $Gamelle = $this->getDoctrine()->getManager()->getRepository("GuardCommonGamelleBundle:Gamelle")->findOneBy(array('uid' => $request->id));
-                $eventGamelle->setId($Gamelle->id);
-                $eventGamelle->setDatetime((new \DateTime())->setTimestamp($request->date));
-                $this->getDoctrine()->getManager()->persist($Gamelle);
-                $this->getDoctrine()->getManager()->flush();
+                if (is_a($Gamelle, Gamelle && $Gamelle != null)){
+                    $eventGamelle->setId($Gamelle->id);
+                    $eventGamelle->setDatetime((new \DateTime())->setTimestamp($request->date));
+                    $this->getDoctrine()->getManager()->persist($Gamelle);
+                    $this->getDoctrine()->getManager()->flush();
+                }else{
+                    return new Response("",500);
+                }
+                
 
                 return new Response("", 200);
             } else {
