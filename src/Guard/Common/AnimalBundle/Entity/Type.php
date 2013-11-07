@@ -28,6 +28,11 @@ class Type {
     protected $id;
 
     /**
+     * @ORM\Column(name="img_path",type="string", length=255)
+     */
+    protected $imgPath;
+    
+    /**
      * @ORM\Column(name="nom", type="string", length=255)
      */
     protected $nom;
@@ -64,6 +69,13 @@ class Type {
     public function setRaces($races) {
         $this->races = $races;
     }
+    
+    public function getImgPath() {
+        return $this->imgPath;
+    }
 
+    public function setImgPath($imgPath) {
+        $this->imgPath = $imgPath;
+    }
 
 }

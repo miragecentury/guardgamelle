@@ -1,0 +1,36 @@
+{%extends "::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Animal - Choix du Type{% endblock %}
+
+{% block subnavbar %}
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs">
+                <!-- Listing par nom des chiens #myanimal_{id} -->
+                <li class=""><a href="{{ path('guard_common_animal_homepage') }}#myanimaux_0" >Toto</a></li>
+                <li class="active"><a href="{{path('guard_common_animal_selectype')}}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> Ajouter un compagnon</a></li>
+                <li class="pull-right"><a class="btn btn-info" href="{{ path('guard_common_animal_race') }}"><i class="glyphicon glyphicon-list"></i> Race</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane active"> 
+                    <div class="row">
+                        {% for type in types %}
+                        <a class="btn btn-info col-lg-2" style="margin-left: 5px; margin-top: 5px;" href="{{path('guard_common_animal_new',{id_type:type.getId()})}}">
+                            <img src="{{ asset('bundles/guard/upload/' ~ type.getImgPath()) }}" />
+                            <h3>{{type.getNom()}}</h3>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

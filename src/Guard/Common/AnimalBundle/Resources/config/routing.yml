@@ -2,8 +2,13 @@ guard_common_animal_homepage:
     pattern:  /animal
     defaults: { _controller: GuardCommonAnimalBundle:Default:index }
 guard_common_animal_new:
-    pattern: /animal/new
+    pattern: /animal/new/{id_type}
     defaults: { _controller: GuardCommonAnimalBundle:Default:new }
+    requirements:
+        id: \d+
+guard_common_animal_selectype:
+    pattern: /animal/selecttype
+    defaults: { _controller: GuardCommonAnimalBundle:Default:newselecttype }
 guard_common_animal_race:
     pattern:  /race
     defaults: { _controller: GuardCommonAnimalBundle:Race:index }
