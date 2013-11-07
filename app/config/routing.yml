@@ -1,3 +1,7 @@
+guard_common_health:
+    resource: "@GuardCommonHealthBundle/Resources/config/routing.yml"
+    prefix:   /
+
 guard_common_event:
     resource: "@GuardCommonEventBundle/Resources/config/routing.yml"
     prefix:   /

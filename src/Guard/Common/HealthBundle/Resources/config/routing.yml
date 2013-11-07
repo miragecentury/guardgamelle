@@ -1,0 +1,3 @@
+guard_common_health_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: GuardCommonHealthBundle:Default:index }
