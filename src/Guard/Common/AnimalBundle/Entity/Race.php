@@ -11,6 +11,7 @@ namespace Guard\Common\AnimalBundle\Entity;
 // On définit le namespace des annotations utilisées par Doctrine2
 // En effet, il existe d'autres annotations, on le verra par la suite, qui utiliseront un autre namespace
 use Doctrine\ORM\Mapping as ORM;
+use Guard\Common\HealthBundle\Entity\Food;
 
 /**
  * @ORM\Entity
@@ -35,12 +36,16 @@ class Race {
      * @ORM\JoinColumn(name="type_id", referencedColumnName="id")
      */
     protected $type;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="Animal", mappedBy="race")
      */
     protected $animaux;
-    
+
+    /**
+     * @ORM\OneToMany(targetEntity="Food", mappedBy="race")
+     */
+    protected $foods;
 
     public function __construct() {
         
@@ -77,6 +82,5 @@ class Race {
     public function setAnimaux($animaux) {
         $this->animaux = $animaux;
     }
-
 
 }

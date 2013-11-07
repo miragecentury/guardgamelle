@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace Guard\Common\FoodBundle\Entity;
+namespace Guard\Common\HealhBundle\Entity;
 
 // On définit le namespace des annotations utilisées par Doctrine2
 // En effet, il existe d'autres annotations, on le verra par la suite, qui utiliseront un autre namespace
@@ -30,52 +30,52 @@ class Food {
      * @ORM\JoinColumn(name="race_id", referencedColumnName="id")
      */
     protected $race;
-    
+
     /**
      * @ORM\Column(name="age", type="float")
      */
     protected $age;
-    
+
     /**
      * @ORM\Column(name="poid_normal", type="float")
      */
     protected $poid_normal;
-    
+
     /**
      * @ORM\Column(name="bilan_energetique_jour", type="integer")
      */
     protected $bilan_energetique_jour;
-    
+
     /**
      * @ORM\Column(name="huile_soja_rt", type="float")
      */
     protected $huile_soja_rt;
-    
+
     /**
      * @ORM\Column(name="haricot_vert_rt", type="float")
      */
     protected $haricot_vert_rt;
-    
+
     /**
      * @ORM\Column(name="viande_hachee_rt", type="float")
      */
     protected $viande_hachee_rt;
-    
+
     /**
      * @ORM\Column(name="feculent_rt", type="float")
      */
     protected $feculent_rt;
-    
+
     /**
      * @ORM\Column(name="cmv", type="string", length="30")
      */
     protected $cmv;
-    
+
     /**
      * @ORM\Column(name="rapport_prot_cal", type="float")
      */
     protected $rapport_prot_cal;
-    
+
     /**
      * @ORM\Column(name="bee", type="float")
      */
@@ -84,6 +84,7 @@ class Food {
     public function __construct() {
         
     }
+
     public function getId() {
         return $this->id;
     }
@@ -179,4 +180,5 @@ class Food {
     public function setBee($bee) {
         $this->bee = $bee;
     }
-}   
+
+}
