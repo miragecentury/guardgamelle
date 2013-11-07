@@ -40,6 +40,7 @@ class Race {
      * @ORM\OneToMany(targetEntity="Animal", mappedBy="race")
      */
     protected $animaux;
+    
 
     public function __construct() {
         
