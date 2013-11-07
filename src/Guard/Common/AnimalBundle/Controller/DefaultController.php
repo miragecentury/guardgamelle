@@ -10,19 +10,11 @@ class DefaultController extends Controller {
         return $this->render('GuardCommonAnimalBundle:Default:index.html.twig', array());
     }
 
-    public function detailAction($id) {
-        return $this->render('GuardCommonAnimalBundle:Default:index.html.twig', array());
-    }
-
     public function newAction() {
         return $this->render('GuardCommonAnimalBundle:Default:index.html.twig', array());
     }
 
-    public function updateAction() {
-        return $this->render('GuardCommonAnimalBundle:Default:index.html.twig', array());
-    }
-
-    public function deleteAction() {
+    public function deleteAction($id) {
         return $this->render('GuardCommonAnimalBundle:Default:index.html.twig', array());
     }
 

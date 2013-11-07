@@ -1,6 +1,9 @@
 guard_common_animal_homepage:
     pattern:  /animal
     defaults: { _controller: GuardCommonAnimalBundle:Default:index }
+guard_common_animal_new:
+    pattern: /animal/new
+    defaults: { _controller: GuardCommonAnimalBundle:Default:new }
 guard_common_animal_race:
     pattern:  /race
     defaults: { _controller: GuardCommonAnimalBundle:Race:index }
