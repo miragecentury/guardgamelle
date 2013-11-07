@@ -29,10 +29,15 @@
                         <div class="col-md-4">
                             <div class="well">
                                 <div class="row">
-                                    <div class="col-md-3">
+                                    <div class="col-md-12">
+                                        <h4>Information:</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
                                         <img class=" img-thumbnail" src="{{ asset('bundles/guard/upload/' ~ animal.getRace().getType().getImgPath()) }}" />
                                     </div>
-                                    <div class="col-md-7">
+                                    <div class="col-md-8">
                                         <table class="table table-striped">
                                             <tr><td>Nom:</td><td>{{animal.getNom()}}</td></tr>
                                             <tr><td>Sexe:</td><td>{% if animal.getSexe() == 0 %} Mâle {% else %} Femelle {% endif %}</td></tr>
@@ -45,7 +50,16 @@
                         </div>
                         <div class="col-md-8">
                             <div class="well">
-                                
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h4>Race Nourriture Infos:</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <table class="table table-striped">
+                                        
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -39,6 +39,12 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="{{ form.masse.vars.id }}" class="col-md-4 control-label">Masse de votre compagnon (g) :</label>
+                        <div class="col-md-8">
+                            <input id="{{ form.masse.vars.id }}" name="{{form.masse.vars.full_name}}" class="form-control" type="text" value="{{form.masse.vars.value}}"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="col-md-4 control-label">Date de Naissance :</label>
                         <div class="col-md-8">
                             {% for child in form.date_naissance.vars.form.children %}

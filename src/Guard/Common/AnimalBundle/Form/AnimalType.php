@@ -26,6 +26,7 @@ class AnimalType extends AbstractType {
                 ->add('nom')
                 ->add('sexe')
                 ->add('date_naissance')
+                ->add('masse')
                 ->add('race', 'entity', array(
                     'class' => 'GuardCommonAnimalBundle:Race',
                     'property' => 'nom',
