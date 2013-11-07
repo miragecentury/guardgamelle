@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Entity(repositoryClass="Guard\Common\AnimalBundle\Entity\AnimalRepository")
+ * @ORM\Entity(repositoryClass="Guard\Common\HealthBundle\Entity\FoodRepository")
  */
 class Food {
 
@@ -25,4 +25,11 @@ class Food {
      */
     protected $id;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Race", inversedBy="foods")
+     * @ORM\JoinColumn(name="race_id", referencedColumnName="id")
+     */
+    protected $race;
+
+    
 }
