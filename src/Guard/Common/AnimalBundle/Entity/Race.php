@@ -43,7 +43,7 @@ class Race {
     protected $animaux;
 
     /**
-     * @ORM\OneToMany(targetEntity="Food", mappedBy="race")
+     * @ORM\OneToMany(targetEntity="Guard\Common\HealhBundle\Entity\Food", mappedBy="race")
      */
     protected $foods;
 
