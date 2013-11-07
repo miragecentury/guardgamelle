@@ -12,11 +12,7 @@ security:
 #                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
 
     firewalls:
-        # … le pare-feu « dev »
-        dev:
-            pattern:  ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-        # Firewall principal pour le reste de notre site
+         # Firewall principal pour le reste de notre site
         main:
             pattern:        ^/
             anonymous:      true
@@ -26,10 +22,12 @@ security:
                 check_path: fos_user_security_check
             logout:
                 path:       fos_user_security_logout
-                target:     /
+                target:     guard_common_user_login
             remember_me:
                 key:        %secret% # %secret% est un paramètre de parameters.yml
-       
+        api:
+            pattern:    ^/api/v1/
+            security:   false
         login:
             pattern:  ^/login$
             security: false
@@ -38,5 +36,11 @@ security:
             security: false
             #http_basic:
             #    realm: "Secured Demo Area"
-
+             # … le pare-feu « dev »
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        
+       
     access_control:
+        - { path: ^/(race|animal|gamelle), roles: ROLE_USER }
