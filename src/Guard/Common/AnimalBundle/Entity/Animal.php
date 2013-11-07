@@ -11,6 +11,7 @@ namespace Guard\Common\AnimalBundle\Entity;
 // On définit le namespace des annotations utilisées par Doctrine2
 // En effet, il existe d'autres annotations, on le verra par la suite, qui utiliseront un autre namespace
 use Doctrine\ORM\Mapping as ORM;
+use Guard\Common\UserBundle\Entity\User;
 
 /**
  * @ORM\Entity
@@ -44,10 +45,16 @@ class Animal {
     protected $date_naissance;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Race", inversedBy="animal")
+     * @ORM\ManyToOne(targetEntity="Race", inversedBy="animaux")
      * @ORM\JoinColumn(name="race_id", referencedColumnName="id")
      */
     protected $race;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Guard\Common\UserBundle\Entity\User", inversedBy="animaux")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    protected $proprio;
 
     public function __construct() {
         

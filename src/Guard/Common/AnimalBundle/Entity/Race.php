@@ -31,13 +31,42 @@ class Race {
     protected $nom;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Type", inversedBy="race")
+     * @ORM\ManyToOne(targetEntity="Type", inversedBy="races")
      * @ORM\JoinColumn(name="type_id", referencedColumnName="id")
      */
     protected $type;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Animal", mappedBy="race")
+     */
+    protected $animaux;
 
     public function __construct() {
         
+    }
+
+    public function getId() {
+        return $this->id;
+    }
+
+    public function getNom() {
+        return $this->nom;
+    }
+
+    public function getType() {
+        return $this->type;
+    }
+
+    public function setId($id) {
+        $this->id = $id;
+    }
+
+    public function setNom($nom) {
+        $this->nom = $nom;
+    }
+
+    public function setType($type) {
+        $this->type = $type;
     }
 
 }

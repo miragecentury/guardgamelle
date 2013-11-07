@@ -10,11 +10,13 @@ namespace Guard\Common\AnimalBundle\Entity;
 
 // On définit le namespace des annotations utilisées par Doctrine2
 // En effet, il existe d'autres annotations, on le verra par la suite, qui utiliseront un autre namespace
+
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Entity(repositoryClass="Guard\Common\AnimalBundle\Entity\TypeRepository")
+ * @ORM\Entity(repositoryClass="TypeRepository")
  */
 class Type {
 
@@ -36,7 +38,32 @@ class Type {
     protected $races;
 
     public function __construct() {
-        
+        $this->races = new ArrayCollection();
     }
+
+    public function getId() {
+        return $this->id;
+    }
+
+    public function getNom() {
+        return $this->nom;
+    }
+
+    public function getRaces() {
+        return $this->races;
+    }
+
+    public function setId($id) {
+        $this->id = $id;
+    }
+
+    public function setNom($nom) {
+        $this->nom = $nom;
+    }
+
+    public function setRaces($races) {
+        $this->races = $races;
+    }
+
 
 }

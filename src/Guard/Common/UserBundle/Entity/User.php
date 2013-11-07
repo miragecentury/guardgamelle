@@ -1,9 +1,10 @@
 <?php
 
 // src/Sdz/UserBundle/Entity/User.php
-    
+
 namespace Guard\Common\UserBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -19,5 +20,15 @@ class User extends BaseUser {
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Guard\Common\AnimalBundle\Entity\Animal", mappedBy="proprio")
+     */
+    protected $animaux;
+
+    public function __construct() {
+        parent::__construct();
+        $this->animaux = ArrayCollection();
+    }
 
 }
