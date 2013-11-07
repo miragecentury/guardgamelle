@@ -43,21 +43,69 @@ class Animal {
      * @ORM\Column(name="date_naissance", type="date")
      */
     protected $date_naissance;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="Race", inversedBy="animaux")
      * @ORM\JoinColumn(name="race_id", referencedColumnName="id")
      */
     protected $race;
-    
+
     /**
-     * @ORM\ManyToOne(targetEntity="Guard\Common\UserBundle\Entity\User", inversedBy="animaux")
+     * @ORM\ManyToOne(targetEntity="Guard\Common\UserBundle\Entity\User", inversedBy="animals")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $proprio;
 
     public function __construct() {
         
+    }
+
+    public function getId() {
+        return $this->id;
+    }
+
+    public function getNom() {
+        return $this->nom;
+    }
+
+    public function getSexe() {
+        return $this->sexe;
+    }
+
+    public function getDateNaissance() {
+        return $this->date_naissance;
+    }
+
+    public function getRace() {
+        return $this->race;
+    }
+
+    public function getProprio() {
+        return $this->proprio;
+    }
+
+    public function setId($id) {
+        $this->id = $id;
+    }
+
+    public function setNom($nom) {
+        $this->nom = $nom;
+    }
+
+    public function setSexe($sexe) {
+        $this->sexe = $sexe;
+    }
+
+    public function setDateNaissance($date_naissance) {
+        $this->date_naissance = $date_naissance;
+    }
+
+    public function setRace($race) {
+        $this->race = $race;
+    }
+
+    public function setProprio($proprio) {
+        $this->proprio = $proprio;
     }
 
 }

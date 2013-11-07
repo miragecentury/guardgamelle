@@ -1,0 +1,72 @@
+{%extends "::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Animal - Animal - Ajout{% endblock %}
+
+{% block subnavbar %}
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+            <div class="well">
+                <form class='form-horizontal' method="POST" >
+                    <div class='form-group' style='text-align: center;'>
+                        <h3>Ajout d'un Compagnon</h4>
+                    </div>
+                    {% if form.vars.errors != null %}
+                    <div class="alert alert-warning">
+                        <ul>
+                            {% for error in form.vars.errors %}
+                            <li>{{error.message}}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                    <div class="form-group">
+                        <label for="{{ form.nom.vars.id }}" class="col-md-4 control-label">Nom du compagnon :</label>
+                        <div class="col-md-8">
+                            <input id="{{ form.nom.vars.id }}" name="{{form.nom.vars.full_name}}" class="form-control" type="text" value="{{form.nom.vars.value}}"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.sexe.vars.id }}" class="col-md-4 control-label">Sexe :</label>
+                        <div class="col-md-8">
+                            <select id="form.sexe.vars.id" name="{{form.sexe.vars.full_name}}" class=" form-control">
+                                <option value="0">Mâle</option>
+                                <option value="1">Femelle</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Date de Naissance :</label>
+                        <div class="col-md-8">
+                            {% for child in form.date_naissance.vars.form.children %}
+                            <select name="{{child.vars.full_name}}" id="{{child.vars.id}}" class="col-md-4 form-control" style="width: 33.33%;">
+                                {% for choise in child.vars.choices %}
+                                <option value="{{choise.value}}" >{{choise.label}}</option>
+                                {% endfor %}
+                            </select>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.race.vars.id }}" class="col-md-4 control-label">Race :</label>
+                        <div class="col-md-8">
+                            <select id="form.race.vars.id" name="{{form.race.vars.full_name}}" class=" form-control">
+                            {% for choice in form.race.vars.choices %}
+                                <option value="{{choice.data.id}}">{{choice.data.nom}}</option>
+                            {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <input id="{{form._token.vars.id}}" type="hidden" name="{{form._token.vars.full_name}}" value="{{form._token.vars.value}}"/>
+                    <div class="form-group" style='text-align: center;'>
+                        <input class="btn btn-success" type="submit" value="Ajouter"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

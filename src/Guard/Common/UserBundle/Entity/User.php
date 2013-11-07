@@ -26,6 +26,11 @@ class User extends BaseUser {
      */
     protected $animaux;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Guard\Common\GamelleBundle\Entity\Gamelle", mappedBy="user")
+     */
+    protected $gamelles;
+
     public function __construct() {
         parent::__construct();
         $this->animaux = ArrayCollection();
