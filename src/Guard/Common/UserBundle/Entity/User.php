@@ -34,6 +34,32 @@ class User extends BaseUser {
     public function __construct() {
         parent::__construct();
         $this->animaux = ArrayCollection();
+        $this->gamelles = ArrayCollection();
     }
+
+    public function getId() {
+        return $this->id;
+    }
+
+    public function getAnimaux() {
+        return $this->animaux;
+    }
+
+    public function getGamelles() {
+        return $this->gamelles;
+    }
+
+    public function setId($id) {
+        $this->id = $id;
+    }
+
+    public function setAnimaux($animaux) {
+        $this->animaux = $animaux;
+    }
+
+    public function setGamelles($gamelles) {
+        $this->gamelles = $gamelles;
+    }
+
 
 }

@@ -12,17 +12,45 @@
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
                 <!-- Listing par nom des chiens #myanimal_{id} -->
-                <li class="active"><a href="#myanimaux_0" data-toggle="tab">Toto</a></li>
+                {% for animal in animals %}
+                <li class="{% if (loop.first == true) %} active {% endif %}"><a href="#myanimaux_{{animal.getId()}}" data-toggle="tab">{{animal.getNom()}}</a></li>
+                {% endfor %}
+
                 <li><a href="{{path('guard_common_animal_selectype')}}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> Ajouter un compagnon</a></li>
                 <li class="pull-right"><a class="btn btn-info" href="{{ path('guard_common_animal_race') }}"><i class="glyphicon glyphicon-list"></i> Race</a></li>
             </ul>
 
             <!-- Tab panes -->
-            <div class="tab-content">
+            <div class="tab-content" style="margin-top: 5px;">
+                {% for animal in animals %}
                 <!-- Listing des infos du chien #myanimal_{id} -->
-                <div class="tab-pane active" id="myanimaux_0">
-                    mes informations sur mon toto
+                <div class="tab-pane {% if (loop.first == true) %} active {% endif %}" id="myanimaux_{{animal.getId()}}">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="well">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <img class=" img-thumbnail" src="{{ asset('bundles/guard/upload/' ~ animal.getRace().getType().getImgPath()) }}" />
+                                    </div>
+                                    <div class="col-md-7">
+                                        <table class="table table-striped">
+                                            <tr><td>Nom:</td><td>{{animal.getNom()}}</td></tr>
+                                            <tr><td>Sexe:</td><td>{% if animal.getSexe() == 0 %} Mâle {% else %} Femelle {% endif %}</td></tr>
+                                            <tr><td>Race:</td><td>{{animal.getRace().getNom()}}</td></tr>
+                                            <tr><td>Masse:</td><td>{{animal.getMasse()}}g</td></tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="well">
+                                
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                {% endfor %}
             </div>
         </div>
     </div>

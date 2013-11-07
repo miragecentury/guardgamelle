@@ -9,7 +9,7 @@ use Guard\Common\AnimalBundle\Form\AnimalType;
 class DefaultController extends Controller {
 
     public function indexAction() {
-        $animals = null;
+        $animals = $this->container->get('security.context')->getToken()->getUser()->getAnimaux();
         return $this->render('GuardCommonAnimalBundle:Default:index.html.twig', array('animals' => $animals));
     }
 

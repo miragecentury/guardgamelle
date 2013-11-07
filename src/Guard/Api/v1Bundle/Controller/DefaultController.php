@@ -27,22 +27,20 @@ class DefaultController extends Controller {
                 $errorDateList = $this->get('validator')->validateValue($d->setTimestamp($request->date), $dateConstraint);
                 $errorStateList = $this->get('validator')->validateValue($request->state, $stateConstraint);
                 if (count($errorIdList) != 0 || count($errorDateList) != 0 || count($errorStateList) != 0 || $d->setTimestamp($request->date) > new \DateTime('NOW')) {
-                    return new response("", 500); 
+                    return new response("", 500);
                 }
 
                 $eventGamelle = new EventGamelle();
                 $Gamelle = $this->getDoctrine()->getManager()->getRepository("GuardCommonGamelleBundle:Gamelle")->findOneBy(array('uid' => $request->id));
-                if (is_a($Gamelle, Gamelle && $Gamelle != null)){
+                if (is_a($Gamelle, "Gamelle") && ($Gamelle != null)) {
                     $eventGamelle->setId($Gamelle->id);
                     $eventGamelle->setDatetime((new \DateTime())->setTimestamp($request->date));
                     $this->getDoctrine()->getManager()->persist($Gamelle);
                     $this->getDoctrine()->getManager()->flush();
-                }else{
-                    return new Response("",500);
+                    return new Response("", 200);
+                } else {
+                    return new Response("", 500);
                 }
-                
-
-                return new Response("", 200);
             } else {
                 return new Response("", 500);
             }

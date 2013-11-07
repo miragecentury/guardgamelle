@@ -33,7 +33,12 @@ class Animal {
      * @ORM\Column(name="nom", type="string", length=255)
      */
     protected $nom;
-
+    
+    /**
+     * @ORM\Column(name="masse", type="float")
+     */
+    protected $masse;
+    
     /**
      * @ORM\Column(name="sexe", type="integer")
      */
@@ -58,6 +63,14 @@ class Animal {
 
     public function __construct() {
         
+    }
+    
+    public function getMasse() {
+        return $this->masse;
+    }
+
+    public function setMasse($masse) {
+        $this->masse = $masse;
     }
 
     public function getId() {
