@@ -24,7 +24,7 @@ class DefaultController extends Controller {
                 return $this->redirect($this->generateUrl('guard_common_gamelle_homepage'));
             }
         }
-        return $this->render('GuardCommonGamelleBundle:Default:new.html.twig', array('form' => $form));
+        return $this->render('GuardCommonGamelleBundle:Default:new.html.twig', array('form' => $form->createView()));
     }
 
 }
