@@ -48,6 +48,9 @@ guard_common_animal_balance_unlink:
 guard_common_animal_balance_link:
     pattern: /animal/balance/link
     defaults: { _controller:GuardCommonAnimalBundle:Default:linkbalance }
+guard_common_changepassword:
+    pattern: /changepwd
+    defaults: { _controller:FOSUserBundle:ChangePassword:changePassword }
 #guard_common_animal_add:
 #    pattern: /animal/new
 #    defaults: {_controller: GuardCommonAnimalBundle:Default:new }

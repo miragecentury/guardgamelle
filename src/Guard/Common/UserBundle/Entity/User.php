@@ -30,6 +30,11 @@ class User extends BaseUser {
      * @ORM\OneToMany(targetEntity="Guard\Common\GamelleBundle\Entity\Gamelle", mappedBy="user")
      */
     protected $gamelles;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Guard\Common\GamelleBundle\Entity\Balance", mappedBy="user")
+     */
+    protected $balances;
 
     public function __construct() {
         parent::__construct();
@@ -61,5 +66,12 @@ class User extends BaseUser {
         $this->gamelles = $gamelles;
     }
 
+    public function getBalances() {
+        return $this->balances;
+    }
+
+    public function setBalances($balances) {
+        $this->balances = $balances;
+    }
 
 }

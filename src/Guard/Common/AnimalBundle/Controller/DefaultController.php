@@ -26,13 +26,27 @@ class DefaultController extends Controller {
         ));
         $formb->add('animal');
         $form = $formb->getForm();
+        
+        $animals = $this->container->get('security.context')->getToken()->getUser()->getAnimaux();
+        $formb_b = $this->createFormBuilder();
+        $formb_b->add('balance', 'entity', array(
+            'class' => 'GuardCommonGamelleBundle:Balance',
+            'property' => 'label',
+            'query_builder' => function(EntityRepository $er) {
+        $queryBuilder = $er->createQueryBuilder('a');
+        $queryBuilder->where('a.animal is null');
+        return $queryBuilder;
+    }
+        ));
+        $formb_b->add('animal');
+        $form_b = $formb_b->getForm();
 
         $inputsAnimalsg = array();
         foreach ($animals as $animal) {
             $inputsAnimalsg[$animal->getId()] = $this->getDoctrine()->getManager('google')->getRepository("GuardCommonEventBundle:EventGamelle")->findBy(array('animal_id' => $animal->getId()));
         }
 
-        return $this->render('GuardCommonAnimalBundle:Default:index.html.twig', array('animals' => $animals, 'form' => $form->createView(), 'inputsAnimalsg' => $inputsAnimalsg));
+        return $this->render('GuardCommonAnimalBundle:Default:index.html.twig', array('formb'=>$form_b->createView(),'animals' => $animals, 'form' => $form->createView(), 'inputsAnimalsg' => $inputsAnimalsg));
     }
 
     public function newselecttypeAction() {

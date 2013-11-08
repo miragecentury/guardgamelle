@@ -149,4 +149,11 @@ class Animal {
         $this->balance = $balance;
     }
 
+    
+    /**********/
+    
+    public function getAgeInMonth()
+    {
+        
+    }
 }
