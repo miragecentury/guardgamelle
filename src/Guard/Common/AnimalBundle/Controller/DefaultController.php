@@ -77,16 +77,16 @@ class DefaultController extends Controller {
         }
 
 //        var_dump($EventGamelles);
-        
+
         $json = array();
-        foreach ($EventGamelles as $eventG){
+        foreach ($EventGamelles as $eventG) {
             array_push($json, $eventG->getState());
         }
 
         return new Response(json_encode($json));
     }
-    
-     public function testchartbalanceAction($id) {
+
+    public function testchartbalanceAction($id) {
         $Animal = $this->getDoctrine()->getManager()->getRepository("GuardCommonAnimalBundle:Animal")->find($id);
         if ($Animal != null) {
             $dt = new DateTime('NOW');
@@ -100,7 +100,7 @@ class DefaultController extends Controller {
         }
 
         $json = array();
-        foreach ($EventBalances as $eventB){
+        foreach ($EventBalances as $eventB) {
             array_push($json, $eventB->getState());
         }
 
@@ -140,6 +140,45 @@ class DefaultController extends Controller {
         $Gamelle = $this->getDoctrine()->getManager()->getRepository('GuardCommonGamelleBundle:Gamelle')->find($id);
         $Animal = $Gamelle->getAnimal();
         $Animal->setGamelle(null);
+        $Gamelle->setAnimal(null);
+        $this->getDoctrine()->getManager()->flush();
+        $this->get('session')->getFlashBag()->add('link', 'Link supprimé');
+        return $this->redirect($this->generateUrl('guard_common_animal_homepage'));
+    }
+
+    public function linkbalanceAction() {
+        $formb = $this->createFormBuilder();
+        $formb->add('balance', 'entity', array(
+            'class' => 'GuardCommonGamelleBundle:Balance',
+            'property' => 'label',
+            'query_builder' => function(EntityRepository $er) {
+        $queryBuilder = $er->createQueryBuilder('a');
+        $queryBuilder->where('a.animal is null');
+        return $queryBuilder;
+    }
+        ))->add('animal');
+        $form = $formb->getForm();
+        if ($this->getRequest()->isMethod('POST')) {
+            $form->submit($this->getRequest());
+            if ($form->isValid()) {
+                $datas = $form->getData();
+                $Animal = $this->getDoctrine()->getManager()->getRepository("GuardCommonAnimalBundle:Animal")->find($datas['animal']);
+                $Gamelle = $datas['balance'];
+                if ($Animal != null && $Gamelle != null) {
+                    $Animal->setBalance($Gamelle);
+                    $Gamelle->setAnimal($Animal);
+                    $this->getDoctrine()->getManager()->flush();
+                    return $this->redirect($this->generateUrl('guard_common_animal_homepage'));
+                }
+            }
+        }
+        return new \Symfony\Component\HttpFoundation\Response();
+    }
+
+    public function unlinkbalanceAction($id) {
+        $Gamelle = $this->getDoctrine()->getManager()->getRepository('GuardCommonGamelleBundle:Balance')->find($id);
+        $Animal = $Gamelle->getAnimal();
+        $Animal->setBalance(null);
         $Gamelle->setAnimal(null);
         $this->getDoctrine()->getManager()->flush();
         $this->get('session')->getFlashBag()->add('link', 'Link supprimé');

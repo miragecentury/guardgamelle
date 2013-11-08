@@ -40,6 +40,14 @@ guard_common_animal_unlink:
 guard_common_animal_link:
     pattern: /animal/link
     defaults: { _controller:GuardCommonAnimalBundle:Default:link }
+guard_common_animal_balance_unlink:
+    pattern: /animal/unlink/balance/{id}
+    defaults: { _controller:GuardCommonAnimalBundle:Default:unlinkbalance }
+    requirements:
+        id: \d+
+guard_common_animal_balance_link:
+    pattern: /animal/balance/link
+    defaults: { _controller:GuardCommonAnimalBundle:Default:linkbalance }
 #guard_common_animal_add:
 #    pattern: /animal/new
 #    defaults: {_controller: GuardCommonAnimalBundle:Default:new }

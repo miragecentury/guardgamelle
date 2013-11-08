@@ -67,6 +67,12 @@ class Animal {
      */
     protected $gamelle;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Guard\Common\GamelleBundle\Entity\Balance")
+     * @ORM\JoinColumn(name="balance_id", referencedColumnName="id")
+     */
+    protected $balance;
+
     public function __construct() {
         
     }
@@ -135,4 +141,12 @@ class Animal {
         $this->gamelle = $gamelle;
     }
     
+    public function getBalance() {
+        return $this->balance;
+    }
+
+    public function setBalance($balance) {
+        $this->balance = $balance;
+    }
+
 }

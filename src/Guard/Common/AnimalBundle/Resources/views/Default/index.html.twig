@@ -68,6 +68,28 @@
                                         </div>
                                         {% endif %}
                                     </div>
+                                </div><div class="row">
+                                    <div class="col-md-12">
+                                        {% if animal.getBalance() != null%}
+                                        Ma Balance : {{animal.getBalance().getLabel()}} 
+                                        <a class="btn btn-danger" href="{{path('guard_common_animal_balance_unlink',{"id":animal.getBalance().getId()})}}"><i class=" glyphicon glyphicon-minus"></i> Unlink</a>
+                                        {% else %}
+                                        <div class="row">
+                                            <form class="form form-inline" action="{{path('guard_common_animal_balance_link')}}" method="POST">
+                                                <input id="{{form._token.vars.id}}" type="hidden" name="{{form._token.vars.full_name}}" value="{{form._token.vars.value}}"/>
+                                                <input type="hidden" name="{{form.animal.vars.full_name}}" id="{{ form.animal.vars.id }}" value="{{animal.getId()}}"/>
+                                                <div class="col-md-9">
+                                                    <select id="{{form.balance.vars.id}}" name="{{form.balance.vars.full_name}}" class=" form-control form-inline">
+                                                        {% for choice in form.balance.vars.choices %}
+                                                        <option value="{{choice.data.id}}">{{choice.data.label}}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                                <button class="btn btn-danger" type="submit" value="unlink"><i class=" glyphicon glyphicon-plus"></i> Link</button>
+                                            </form>
+                                        </div>
+                                        {% endif %}
+                                    </div>
                                 </div>
                             </div>
                         </div>
