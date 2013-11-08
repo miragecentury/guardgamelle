@@ -7,8 +7,13 @@ guard_common_animal_new:
     requirements:
         id: \d+
 guard_common_animal_test:
-    pattern: /animal/test/{id}
+    pattern: /animal/testGamelle/{id}
     defaults: { _controller: GuardCommonAnimalBundle:Default:testchart }
+    requirements:
+        id: \d+
+guard_common_animal_test:
+    pattern: /animal/testBalance/{id}
+    defaults: { _controller: GuardCommonAnimalBundle:Default:testchartbalance }
     requirements:
         id: \d+
 guard_common_animal_selectype:

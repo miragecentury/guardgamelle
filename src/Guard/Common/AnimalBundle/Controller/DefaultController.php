@@ -78,8 +78,34 @@ class DefaultController extends Controller {
         }
 
         var_dump($EventGamelles);
+        
+        $json = array();
+        foreach ($EventGamelle as $eventG){
+            array_push($json, $EventG->getState());
+        }
 
-        return new Response();
+        return new Response(json_encode($json));
+    }
+    
+     public function testchartbalanceAction($id) {
+        $Animal = $this->getDoctrine()->getManager()->getRepository("GuardCommonAnimalBundle:Animal")->find($id);
+        if ($Animal != null) {
+            $dt = new DateTime('NOW');
+            $dt->modify("-7 day");
+            $EventBalances = $this->getDoctrine()->getManager('google')->createQuery(
+                            'SELECT p
+                            FROM GuardCommonEventBundle:EventBalance p
+                            WHERE p.animal_id = :animal
+                            ORDER BY p.id ASC'
+                    )->setParameter(array('animal' => $Animal->getId()))->getResult();
+        }
+
+        $json = array();
+        foreach ($EventBalance as $eventB){
+            array_push($json, $EventB->getState());
+        }
+
+        return new Response(json_encode($json));
     }
 
     public function linkAction() {
