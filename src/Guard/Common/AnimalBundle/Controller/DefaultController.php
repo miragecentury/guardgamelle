@@ -17,7 +17,7 @@ class DefaultController extends Controller {
         $repType = $this->getDoctrine()->getManager()->getRepository("GuardCommonAnimalBundle:Type");
         $types = $repType->findAll();
         $animals = $this->container->get('security.context')->getToken()->getUser()->getAnimaux();
-        return $this->render('GuardCommonAnimalBundle:Default:selecttype.html.twig', array('types' => $types,'animals'=>$animals));
+        return $this->render('GuardCommonAnimalBundle:Default:selecttype.html.twig', array('types' => $types, 'animals' => $animals));
     }
 
     public function newAction($id_type) {
@@ -39,6 +39,18 @@ class DefaultController extends Controller {
 
     public function deleteAction($id) {
         return $this->render('GuardCommonAnimalBundle:Default:index.html.twig', array());
+    }
+
+    public function linkAction() {
+        $form = $this->createFormBuilder();
+        $form
+                ->add('animal')
+                ->add('gamelle')
+        ;
+    }
+
+    public function unlinkAction() {
+        
     }
 
 }

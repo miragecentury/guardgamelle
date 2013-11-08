@@ -25,7 +25,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for gamelle in gamelles %}
+                    {% if isarray(gamelles)%}
+                        {% for gamelle in gamelles %}
                     <tr>
                         <td>{{gamelle.getId()}}</td>
                         <td>{{gamelle.getNom()}}</td>
@@ -33,7 +34,12 @@
                         <td>{{dump(gamelle.getAnimal())}}</td>
                         <td><a href="#" class="btn btn-danger">{{gamelle.getId()}}</a></td>
                     </tr>
-                    {% endfor %}
+                        {% endfor %}
+                    {% else %}
+                    <tr>
+                        <td colspan="5" style="text-align: center;">Aucune Gamelle</td>
+                    </tr>
+                    {% endif %}
                 </tbody>
                 <tfoot>
                     <tr>

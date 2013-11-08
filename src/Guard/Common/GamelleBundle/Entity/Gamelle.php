@@ -16,7 +16,7 @@ use Guard\Common\EventBundle\Entity\EventGamelle;
 
 /**
  * @ORM\Entity
- * @ORM\Entity(repositoryClass="Guard\Common\AnimalBundle\Entity\GamelleRepository")
+ * @ORM\Entity(repositoryClass="Guard\Common\GamelleBundle\Entity\GamelleRepository")
  */
 class Gamelle {
 
