@@ -72,5 +72,23 @@ class Gamelle {
     public function setLabel($label) {
         $this->label = $label;
     }
+    
+    public function getAnimal() {
+        return $this->animal;
+    }
+
+    public function getUser() {
+        return $this->user;
+    }
+
+    public function setAnimal($animal) {
+        $this->animal = $animal;
+    }
+
+    public function setUser($user) {
+        $this->user = $user;
+    }
+
+
 
 }

@@ -33,12 +33,12 @@ class Animal {
      * @ORM\Column(name="nom", type="string", length=255)
      */
     protected $nom;
-    
+
     /**
      * @ORM\Column(name="masse", type="float")
      */
     protected $masse;
-    
+
     /**
      * @ORM\Column(name="sexe", type="integer")
      */
@@ -61,10 +61,16 @@ class Animal {
      */
     protected $proprio;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Guard\Common\GamelleBundle\Entity\Gamelle")
+     * @ORM\JoinColumn(name="gamelle_id", referencedColumnName="id")
+     */
+    protected $gamelle;
+
     public function __construct() {
         
     }
-    
+
     public function getMasse() {
         return $this->masse;
     }
@@ -116,7 +122,7 @@ class Animal {
     public function setRace($race) {
         $this->race = $race;
     }
-    
+
     public function setProprio($proprio) {
         $this->proprio = $proprio;
     }
