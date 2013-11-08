@@ -4,3 +4,9 @@ guard_common_gamelle_homepage:
 guard_common_gamelle_new:
     pattern:  /gamelle/new
     defaults: { _controller: GuardCommonGamelleBundle:Default:new }
+guard_common_balance_homepage:
+    pattern:  /balance
+    defaults: { _controller: GuardCommonGamelleBundle:Balance:index }
+guard_common_balance_new:
+    pattern:  /balalnce/new
+    defaults: { _controller: GuardCommonGamelleBundle:Balance:new }

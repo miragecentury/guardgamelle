@@ -1,0 +1,64 @@
+{%extends "::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Balance - New{% endblock %}
+
+{% block subnavbar %}
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <div class="col-md-offset-2 col-md-8">
+        <div class="well">
+            <form class='form-horizontal' method="POST" >
+                <div class='form-group' style='text-align: center;'>
+                    <h3>Ajout d'une Balance</h4>
+                </div>
+                    {% if form.vars.errors != null %}
+                <div class="alert alert-warning">
+                    <ul>
+                            {% for error in form.vars.errors %}
+                        <li>{{error.message}}</li>
+                            {% endfor %}
+                    </ul>
+                </div>
+                    {% endif %}
+                <input id="{{form._token.vars.id}}" type="hidden" name="{{form._token.vars.full_name}}" value="{{form._token.vars.value}}"/>
+
+                <div class="form-group" >
+                    <label for="{{ form.label.vars.id }}" class="col-md-2 control-label" style=" text-align: center;">Label :</label>
+                    <div class="col-md-10">
+                        <input id="{{ form.label.vars.id }}" name="{{form.label.vars.full_name}}" class="form-control" type="text" value="{{form.label.vars.value}}"/>
+                    </div>
+                        {% if form.label.vars.errors != null %}
+                    <div class="alert alert-warning">
+                        <ul>
+                                {% for error in form.label.vars.errors %}
+                            <li><i class=" glyphicon glyphicon-warning-sign"></i> {{error}}</li>
+                                {% endfor %}
+                        </ul>
+                    </div>
+                        {% endif %}
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.uid.vars.id }}" class="col-md-2 control-label" style=" text-align: center;">Uid :</label>
+                    <div class="col-md-10">
+                        <input id="{{ form.uid.vars.id }}" name="{{form.uid.vars.full_name}}" class="form-control" type="text" value="{{form.uid.vars.value}}"/>
+                    </div>
+                        {% if form.uid.vars.errors != null %}
+                    <div class="alert alert-warning">
+                        <ul>
+                                {% for error in form.uid.vars.errors %}
+                            <li><i class=" glyphicon glyphicon-warning-sign"></i> {{error}}</li>
+                                {% endfor %}
+                        </ul>
+                    </div>
+                        {% endif %}
+                </div>
+                <div class="form-group" style='text-align: center;'>
+                    <input class="btn btn-success" type="submit" value="Ajouter"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

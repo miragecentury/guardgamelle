@@ -10,11 +10,13 @@ guard_common_animal_gamelle_test:
     pattern: /animal/testgamelle/{id}
     defaults: { _controller: GuardCommonAnimalBundle:Default:testchart }
     requirements:
+        _method:  GET
         id: \d+
 guard_common_animal_balance_test:
     pattern: /animal/testbalance/{id}
     defaults: { _controller: GuardCommonAnimalBundle:Default:testchartbalance }
     requirements:
+        _method:  GET
         id: \d+
 guard_common_animal_selectype:
     pattern: /animal/selecttype

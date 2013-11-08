@@ -1,0 +1,57 @@
+{%extends "::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Balance{% endblock %}
+
+{% block subnavbar %}
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <a href="{{path('guard_common_balance_new')}}" class="btn btn-success"><i class=" glyphicon glyphicon-plus"></i> Ajouter une Balance</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nom</th>
+                        <th>UID</th>
+                        <th>Compagnon</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for gamelle in gamelles %}
+                    <tr>
+                        <td>{{gamelle.getId()}}</td>
+                        <td>{{gamelle.getLabel()}}</td>
+                        <td>{{gamelle.getUid()}}</td>
+                        <td>
+                            {% if gamelle.getAnimal() != null %}
+                                {{gamelle.getAnimal().getNom()}}
+                            {% else %}
+
+                            {% endif %}
+                        </td>
+                        <td><a href="#{{gamelle.getId()}}" class="btn btn-danger"><i class=" glyphicon glyphicon-trash"></i> Supprimer</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>#</th>
+                        <th>Nom</th>
+                        <th>UID</th>
+                        <th>Compagnon</th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

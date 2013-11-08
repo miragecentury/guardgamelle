@@ -30,6 +30,7 @@
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                     <li class="{% if( get_bundle_name() == "GuardCommonAnimalBundle" and get_controller_name() == "default" and get_action_name() == "index" ) %}active{% endif %}"><a href="{{ path('guard_common_animal_homepage') }}">Animaux</a></li>
                     <li class="{% if( get_bundle_name() == "GuardCommonGamelleBundle" and get_controller_name() == "default" and get_action_name() == "index" ) %}active{% endif %}"><a href="{{ path('guard_common_gamelle_homepage') }}">Gamelles</a></li>
+                    <li class="{% if( get_bundle_name() == "GuardCommonGamelleBundle" and get_controller_name() == "balance" and get_action_name() == "index" ) %}active{% endif %}"><a href="{{ path('guard_common_balance_homepage') }}">Balances</a></li>
                     {% endif %}
                 {% endblock %}
                 </ul>
