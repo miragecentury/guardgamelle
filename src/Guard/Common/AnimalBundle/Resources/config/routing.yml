@@ -6,6 +6,11 @@ guard_common_animal_new:
     defaults: { _controller: GuardCommonAnimalBundle:Default:new }
     requirements:
         id: \d+
+guard_common_animal_test:
+    pattern: /animal/test/{id}
+    defaults: { _controller: GuardCommonAnimalBundle:Default:testchart }
+    requirements:
+        id: \d+
 guard_common_animal_selectype:
     pattern: /animal/selecttype
     defaults: { _controller: GuardCommonAnimalBundle:Default:newselecttype }

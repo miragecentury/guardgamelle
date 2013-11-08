@@ -8,6 +8,7 @@ use Guard\Common\AnimalBundle\Entity\Animal;
 use Guard\Common\AnimalBundle\Form\AnimalType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller {
 
@@ -44,7 +45,6 @@ class DefaultController extends Controller {
     public function newAction($id_type) {
         $animal = new Animal();
         $form = $this->createForm(new AnimalType($id_type), $animal);
-
         if ($this->getRequest()->isMethod("POST")) {
             $form->submit($this->getRequest());
             if ($form->isValid()) {
@@ -62,20 +62,24 @@ class DefaultController extends Controller {
         return $this->render('GuardCommonAnimalBundle:Default:index.html.twig', array());
     }
 
-    public function testChart($id) {
+    public function testchartAction($id) {
         $Animal = $this->getDoctrine()->getManager()->getRepository("GuardCommonAnimalBundle:Animal")->find($id);
-        if (is_a($Animal, "Animal") && ($Animal != null)) {
-            $Gamelle = $Animal->getGamelle;
+        if ($Animal != null) {
             $dt = new DateTime('NOW');
-            $EventGamelle = $this->getDoctrine()->getManager()->getRepository("GuardCommonEventGamelleBundle:EventGamelle")->findBy(array(
-                'gamelle_id' => $Gamelle->id,
-                'datetime' => function(EntityRepository $er) use ($dt) {
-            $queryBuilder = $er->createQueryBuilder('d');
-            $queryBuilder->where('d >= ' . $dt('d') - 7);
-            return $queryBuilder;
+            $dt->modify("-7 day");
+            $xdt = $dt->format(DATE_ATOM);
+            $EventGamelles = $this->getDoctrine()->getManager('google')->createQuery(
+                            'SELECT p
+                            FROM GuardCommonEventBundle:EventGamelle p
+                            WHERE p.datetime > :price
+                            AND p.animal_id = :animal
+                            ORDER BY p.id ASC'
+                    )->setParameters(array('price' => $xdt, 'animal' => $Animal->getId()))->getResult();
         }
-            ));
-        }
+
+        var_dump($EventGamelles);
+
+        return new Response();
     }
 
     public function linkAction() {
