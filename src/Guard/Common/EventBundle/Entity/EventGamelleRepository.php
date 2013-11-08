@@ -1,6 +1,6 @@
 <?php
 
-namespace Guard\Common\GamelleBundle\Entity;
+namespace Guard\Common\EventBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 

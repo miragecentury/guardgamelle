@@ -33,8 +33,8 @@ class DefaultController extends Controller {
 
                 $eventGamelle = new EventGamelle();
                 $Gamelle = $this->getDoctrine()->getManager()->getRepository("GuardCommonGamelleBundle:Gamelle")->findOneBy(array('uid' => $request->id));
-                if ($Gamelle != null) {
-                    $eventGamelle->setGamelleId($Gamelle->getId());
+                if ($Gamelle != null && $Gamelle->getAnimal() != null) {
+                    $eventGamelle->setAnimalId($Gamelle->getAnimal()->getId());
                     $eventGamelle->setDatetime((new \DateTime())->setTimestamp($request->date));
                     $eventGamelle->setState($request->state);
                     $this->getDoctrine()->getManager('google')->persist($eventGamelle);

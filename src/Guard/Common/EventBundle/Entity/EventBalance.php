@@ -24,9 +24,9 @@ class EventBalance {
     protected $datetime;
 
     /**
-     * @ORM\Column(name="balance_id", type="integer")
+     * @ORM\Column(name="animal_id", type="integer")
      */
-    protected $balance_id;
+    protected $animal_id;
 
     /**
      * @ORM\Column(name="state", type="float")
@@ -41,10 +41,6 @@ class EventBalance {
         return $this->datetime;
     }
 
-    public function getBalanceId() {
-        return $this->gamelle_id;
-    }
-
     public function setId($id) {
         $this->id = $id;
     }
@@ -53,16 +49,20 @@ class EventBalance {
         $this->datetime = $datetime;
     }
 
-    public function setBalanceId($gamelle_id) {
-        $this->gamelle_id = $gamelle_id;
-    }
-
     public function getState() {
         return $this->state;
     }
 
     public function setState($state) {
         $this->state = $state;
+    }
+
+    public function getAnimalId() {
+        return $this->animal_id;
+    }
+
+    public function setAnimalId($animal_id) {
+        $this->animal_id = $animal_id;
     }
 
 }

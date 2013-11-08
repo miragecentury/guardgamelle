@@ -34,13 +34,11 @@ class BalanceController extends Controller {
 
                 $eventGamelle = new EventBalance();
                 $Gamelle = $this->getDoctrine()->getManager()->getRepository("GuardCommonGamelleBundle:Balance")->findOneBy(array('uid' => $request->id));
-                if ($Gamelle != null) {
-                    $Animal = $Gamelle->getAnimal();
-                    if ($Animal != null) {
-                        $Animal->setMasse($request->state);
-                        $this->getDoctrine()->getManager()->flush();
-                    }
-                    $eventGamelle->setBalanceId($Gamelle->getId());
+                if ($Gamelle != null && $Gamelle->getAnimal() != null) {
+                    $Gamelle->getAnimal()->setMasse($request->state);
+                    $this->getDoctrine()->getManager()->flush();
+
+                    $eventGamelle->setAnimalId($Gamelle->getAnimal()->getId());
                     $eventGamelle->setDatetime((new \DateTime())->setTimestamp($request->date));
                     $eventGamelle->setState($request->state);
                     $this->getDoctrine()->getManager('google')->persist($eventGamelle);

@@ -2,23 +2,36 @@
 
 namespace Guard\Common\AnimalBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use DateTime;
+use Doctrine\ORM\EntityRepository;
 use Guard\Common\AnimalBundle\Entity\Animal;
 use Guard\Common\AnimalBundle\Form\AnimalType;
-use Symfony\Component\HttpFoundation\Response;
-use Guard\Common\GamelleBundle\Entity\Gamelle;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Form;
 
 class DefaultController extends Controller {
 
     public function indexAction() {
         $animals = $this->container->get('security.context')->getToken()->getUser()->getAnimaux();
         $formb = $this->createFormBuilder();
-        $formb
-                ->add('animal')
-                ->add('gamelle')
-        ;
+        $formb->add('gamelle', 'entity', array(
+            'class' => 'GuardCommonGamelleBundle:Gamelle',
+            'property' => 'label',
+            'query_builder' => function(EntityRepository $er) {
+        $queryBuilder = $er->createQueryBuilder('a');
+        $queryBuilder->where('a.animal is null');
+        return $queryBuilder;
+    }
+        ));
+        $formb->add('animal');
         $form = $formb->getForm();
-        return $this->render('GuardCommonAnimalBundle:Default:index.html.twig', array('animals' => $animals, 'form' => $form));
+
+        $inputsAnimalsg = array();
+        foreach ($animals as $animal) {
+            $inputsAnimalsg[$animal->getId()] = $this->getDoctrine()->getManager('google')->getRepository("GuardCommonEventBundle:EventGamelle")->findBy(array('animal_id' => $animal->getId()));
+        }
+
+        return $this->render('GuardCommonAnimalBundle:Default:index.html.twig', array('animals' => $animals, 'form' => $form->createView(), 'inputsAnimalsg' => $inputsAnimalsg));
     }
 
     public function newselecttypeAction() {
@@ -53,7 +66,7 @@ class DefaultController extends Controller {
         $Animal = $this->getDoctrine()->getManager()->getRepository("GuardCommonAnimalBundle:Animal")->find($id);
         if (is_a($Animal, "Animal") && ($Animal != null)) {
             $Gamelle = $Animal->getGamelle;
-            $dt = new \DateTime('NOW');
+            $dt = new DateTime('NOW');
             $EventGamelle = $this->getDoctrine()->getManager()->getRepository("GuardCommonEventGamelleBundle:EventGamelle")->findBy(array(
                 'gamelle_id' => $Gamelle->id,
                 'datetime' => function(EntityRepository $er) use ($dt) {
@@ -67,18 +80,31 @@ class DefaultController extends Controller {
 
     public function linkAction() {
         $formb = $this->createFormBuilder();
-        $formb
-                ->add('animal')
-                ->add('gamelle')
-        ;
+        $formb->add('gamelle', 'entity', array(
+            'class' => 'GuardCommonGamelleBundle:Gamelle',
+            'property' => 'label',
+            'query_builder' => function(EntityRepository $er) {
+        $queryBuilder = $er->createQueryBuilder('a');
+        $queryBuilder->where('a.animal is null');
+        return $queryBuilder;
+    }
+        ))->add('animal');
         $form = $formb->getForm();
         if ($this->getRequest()->isMethod('POST')) {
             $form->submit($this->getRequest());
             if ($form->isValid()) {
-                $Animal = $this->getDoctrine()->getManager()->getRepository("")->find($form->get('animal'));
-                $Gamelle = $this->getDoctrine()->getManager()->getRepository('')->find($form->get($form->get('gamelle')));
+                $datas = $form->getData();
+                $Animal = $this->getDoctrine()->getManager()->getRepository("GuardCommonAnimalBundle:Animal")->find($datas['animal']);
+                $Gamelle = $datas['gamelle'];
+                if ($Animal != null && $Gamelle != null) {
+                    $Animal->setGamelle($Gamelle);
+                    $Gamelle->setAnimal($Animal);
+                    $this->getDoctrine()->getManager()->flush();
+                    return $this->redirect($this->generateUrl('guard_common_animal_homepage'));
+                }
             }
         }
+        return new \Symfony\Component\HttpFoundation\Response();
     }
 
     public function unlinkAction($id) {

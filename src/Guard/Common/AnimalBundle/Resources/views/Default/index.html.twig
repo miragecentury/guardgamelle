@@ -49,14 +49,23 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         {% if animal.getGamelle() != null%}
-                                            Ma gamelle : {{animal.getGamelle().getLabel()}} 
-                                            <a class="btn btn-danger" href="{{path('guard_common_animal_unlink',{"id":animal.getGamelle().getId()})}}"><i class=" glyphicon glyphicon-minus"></i> Unlink</a>
+                                        Ma gamelle : {{animal.getGamelle().getLabel()}} 
+                                        <a class="btn btn-danger" href="{{path('guard_common_animal_unlink',{"id":animal.getGamelle().getId()})}}"><i class=" glyphicon glyphicon-minus"></i> Unlink</a>
                                         {% else %}
-                                        //TODO link gamelle
-                                        <form class="form form-inline" action="" method="POST">
-                                            <input type="hidden" name="" id="" value="{{animal.getId()}}"/>
-                                            <button class="btn btn-danger" type="submit" value="unlink">Unlink</button>
-                                        </form>
+                                        <div class="row">
+                                            <form class="form form-inline" action="{{path('guard_common_animal_link')}}" method="POST">
+                                                <input id="{{form._token.vars.id}}" type="hidden" name="{{form._token.vars.full_name}}" value="{{form._token.vars.value}}"/>
+                                                <input type="hidden" name="{{form.animal.vars.full_name}}" id="{{ form.animal.vars.id }}" value="{{animal.getId()}}"/>
+                                                <div class="col-md-9">
+                                                    <select id="{{form.gamelle.vars.id}}" name="{{form.gamelle.vars.full_name}}" class=" form-control form-inline">
+                                                        {% for choice in form.gamelle.vars.choices %}
+                                                        <option value="{{choice.data.id}}">{{choice.data.label}}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                                <button class="btn btn-danger" type="submit" value="unlink"><i class=" glyphicon glyphicon-plus"></i> Link</button>
+                                            </form>
+                                        </div>
                                         {% endif %}
                                     </div>
                                 </div>
@@ -138,6 +147,21 @@
                                         {% endif %}
                                     </table>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="well">
+                                <table class="table table-striped table-striped">
+                                    {% for input in inputsAnimalsg[animal.getId()] %}
+                                    <tr>
+                                        <td>{{input.getId()}}</td>
+                                        <td>{{input.getDateTime().format("d/m/y h:m:s")}}</td>
+                                        <td>{{input.getState()}}g</td>
+                                    </tr>
+                                    {% endfor %}
+                                </table>
                             </div>
                         </div>
                     </div>
