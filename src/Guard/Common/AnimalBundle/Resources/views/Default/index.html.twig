@@ -152,6 +152,15 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
+                            ICICICICICICICICICICICICICICICICICICIC
+                            {{path("guard_common_animal_gamelle_test",{id:animal.getId()})}}
+                            {{path("guard_common_animal_balance_test",{id:animal.getId()})}}
+                            <div id="container_{{animal.getId()}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
                             <div class="well">
                                 <table class="table table-striped table-striped">
                                     {% for input in inputsAnimalsg[animal.getId()] %}
@@ -171,4 +180,8 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block javascript %}
+    {{parent()}}
 {% endblock %}
