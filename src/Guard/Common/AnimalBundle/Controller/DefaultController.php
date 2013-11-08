@@ -39,5 +39,22 @@ class DefaultController extends Controller {
     public function deleteAction($id) {
         return $this->render('GuardCommonAnimalBundle:Default:index.html.twig', array());
     }
+    
+    public function testChart($id){
+        $Animal = $this->getDoctrine()->getManager()->getRepository("GuardCommonAnimalBundle:Animal")->find($id);
+        if (is_a($Animal, "Animal") && ($Animal != null)) {
+           $Gamelle = $Animal->getGamelle;
+           $dt = new \DateTime('NOW');
+           $EventGamelle = $this->getDoctrine()->getManager()->getRepository("GuardCommonEventGamelleBundle:EventGamelle")->findBy(array(
+                'gamelle_id' => $Gamelle->id,
+                'datetime' => function(EntityRepository $er) use ($dt){
+                    $queryBuilder = $er->createQueryBuilder('d');
+                    $queryBuilder->where('d >= '.$dt('d')-7);
+                    return $queryBuilder;
+                }
+            ));
+        }
+    }
 
 }
+
