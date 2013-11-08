@@ -71,17 +71,16 @@ class DefaultController extends Controller {
             $EventGamelles = $this->getDoctrine()->getManager('google')->createQuery(
                             'SELECT p
                             FROM GuardCommonEventBundle:EventGamelle p
-                            WHERE p.datetime > :price
-                            AND p.animal_id = :animal
+                            WHERE p.animal_id = :animal
                             ORDER BY p.id ASC'
-                    )->setParameters(array('price' => $xdt, 'animal' => $Animal->getId()))->getResult();
+                    )->setParameters(array('animal' => $Animal->getId()))->getResult();
         }
 
-        var_dump($EventGamelles);
+//        var_dump($EventGamelles);
         
         $json = array();
-        foreach ($EventGamelle as $eventG){
-            array_push($json, $EventG->getState());
+        foreach ($EventGamelles as $eventG){
+            array_push($json, $eventG->getState());
         }
 
         return new Response(json_encode($json));
@@ -97,12 +96,12 @@ class DefaultController extends Controller {
                             FROM GuardCommonEventBundle:EventBalance p
                             WHERE p.animal_id = :animal
                             ORDER BY p.id ASC'
-                    )->setParameter(array('animal' => $Animal->getId()))->getResult();
+                    )->setParameters(array('animal' => $Animal->getId()))->getResult();
         }
 
         $json = array();
-        foreach ($EventBalance as $eventB){
-            array_push($json, $EventB->getState());
+        foreach ($EventBalances as $eventB){
+            array_push($json, $eventB->getState());
         }
 
         return new Response(json_encode($json));

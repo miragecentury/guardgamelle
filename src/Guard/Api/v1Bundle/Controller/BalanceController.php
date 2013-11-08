@@ -45,7 +45,7 @@ class BalanceController extends Controller {
                     $this->getDoctrine()->getManager('google')->flush();
                     return new Response("{ok:'ok'}", 200);
                 } else {
-                    return new Response("{err:'Balance n'existe pas'}", 500);
+                    return new Response("{err:'Balance n'existe pas ou aucun Animal link'}", 500);
                 }
             } else {
                 return new Response("{err:'json parce err'}", 500);

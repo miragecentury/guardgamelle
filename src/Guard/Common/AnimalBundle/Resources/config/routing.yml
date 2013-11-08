@@ -6,13 +6,13 @@ guard_common_animal_new:
     defaults: { _controller: GuardCommonAnimalBundle:Default:new }
     requirements:
         id: \d+
-guard_common_animal_test:
-    pattern: /animal/testGamelle/{id}
+guard_common_animal_gamelle_test:
+    pattern: /animal/testgamelle/{id}
     defaults: { _controller: GuardCommonAnimalBundle:Default:testchart }
     requirements:
         id: \d+
-guard_common_animal_test:
-    pattern: /animal/testBalance/{id}
+guard_common_animal_balance_test:
+    pattern: /animal/testbalance/{id}
     defaults: { _controller: GuardCommonAnimalBundle:Default:testchartbalance }
     requirements:
         id: \d+
