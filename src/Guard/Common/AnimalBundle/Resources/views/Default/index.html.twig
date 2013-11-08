@@ -47,7 +47,13 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    
+                                    <div class="col-md-12">
+                                        {% if animal.getGamelle() != null%}
+                                        Ma gamelle : {{animal.getGamelle().getLabel()}}
+                                        {% else %}
+                                            //TODO link gamelle
+                                        {% endif %}
+                                    </div>
                                 </div>
                             </div>
                         </div>

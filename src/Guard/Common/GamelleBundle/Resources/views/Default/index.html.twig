@@ -14,7 +14,7 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <table>
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -25,21 +25,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% if isarray(gamelles)%}
-                        {% for gamelle in gamelles %}
+                    {% for gamelle in gamelles %}
                     <tr>
                         <td>{{gamelle.getId()}}</td>
-                        <td>{{gamelle.getNom()}}</td>
+                        <td>{{gamelle.getLabel()}}</td>
                         <td>{{gamelle.getUid()}}</td>
-                        <td>{{dump(gamelle.getAnimal())}}</td>
+                        <td>
+                            {% if gamelle.getAnimal() != null %}
+                                {{gamelle.getAnimal().getNom()}}
+                            {% else %}
+
+                            {% endif %}
+                        </td>
                         <td><a href="#" class="btn btn-danger">{{gamelle.getId()}}</a></td>
                     </tr>
-                        {% endfor %}
-                    {% else %}
-                    <tr>
-                        <td colspan="5" style="text-align: center;">Aucune Gamelle</td>
-                    </tr>
-                    {% endif %}
+                    {% endfor %}
                 </tbody>
                 <tfoot>
                     <tr>

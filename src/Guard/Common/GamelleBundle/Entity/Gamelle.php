@@ -13,6 +13,7 @@ namespace Guard\Common\GamelleBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Guard\Common\UserBundle\Entity\User;
 use Guard\Common\EventBundle\Entity\EventGamelle;
+use Guard\Common\AnimalBundle\Entity\Animal;
 
 /**
  * @ORM\Entity
@@ -72,7 +73,7 @@ class Gamelle {
     public function setLabel($label) {
         $this->label = $label;
     }
-    
+
     public function getAnimal() {
         return $this->animal;
     }
@@ -88,7 +89,5 @@ class Gamelle {
     public function setUser($user) {
         $this->user = $user;
     }
-
-
 
 }

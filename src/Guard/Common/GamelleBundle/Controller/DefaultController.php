@@ -8,8 +8,9 @@ use Guard\Common\GamelleBundle\Entity\Gamelle;
 class DefaultController extends Controller {
 
     public function indexAction() {
-        $gamelles = $this->getDoctrine()->getManager()->getRepository('GuardCommonGamelleBundle:Gamelle')->findBy(array('user_id', $this->container->get('security.context')->getToken()->getUser()->getId()));
-        return $this->render('GuardCommonGamelleBundle:Default:index.html.twig', array('gamelles' => $gamelles));
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $gamelles = $this->getDoctrine()->getManager()->getRepository('GuardCommonGamelleBundle:Gamelle')->findBy(array('user'=>$user->getId()));
+        return $this->render('GuardCommonGamelleBundle:Default:index.html.twig', array('gamelles' => $gamelles,'user'=>$user));
     }
 
     public function newAction() {

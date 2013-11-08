@@ -8,6 +8,7 @@ use Symfony\Component\Validator\Constraints as Upsert;
 use Guard\Common\GamelleBundle\Entity\Gamelle;
 use Guard\Common\EventBundle\Entity\EventGamelle;
 
+
 class DefaultController extends Controller {
 
     public function indexAction() {
@@ -28,25 +29,26 @@ class DefaultController extends Controller {
                 $errorStateList = $this->get('validator')->validateValue($request->state, $stateConstraint);
                 $dateNow = new \DateTime('NOW');
                 if (count($errorIdList) != 0 || count($errorDateList) != 0 || count($errorStateList) != 0 || $d->setTimestamp($request->date) > $dateNow) {
-                    return new response("", 500);
+                    return new response("{err:'check request failed'}", 500);
                 }
 
                 $eventGamelle = new EventGamelle();
                 $Gamelle = $this->getDoctrine()->getManager()->getRepository("GuardCommonGamelleBundle:Gamelle")->findOneBy(array('uid' => $request->id));
-                if (is_a($Gamelle, "Gamelle") && ($Gamelle != null)) {
-                    $eventGamelle->setId($Gamelle->id);
+                if ($Gamelle != null) {
+                    $eventGamelle->setGamelleId($Gamelle->getId());
                     $eventGamelle->setDatetime((new \DateTime())->setTimestamp($request->date));
-                    $this->getDoctrine()->getManager()->persist($Gamelle);
-                    $this->getDoctrine()->getManager()->flush();
-                    return new Response("", 200);
+                    $eventGamelle->setState($request->state);
+                    $this->getDoctrine()->getManager('google')->persist($eventGamelle);
+                    $this->getDoctrine()->getManager('google')->flush();
+                    return new Response("{ok:'ok'}", 200);
                 } else {
-                    return new Response("", 500);
+                    return new Response("{err:'Gamelle n'existe pas'}", 500);
                 }
             } else {
-                return new Response("", 500);
+                return new Response("{err:'json parce err'}", 500);
             }
         } else {
-            return new Response("", 500);
+            return new Response("{err:'no post'}", 500);
         }
     }
 

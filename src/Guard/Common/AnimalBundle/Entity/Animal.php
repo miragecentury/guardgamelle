@@ -127,4 +127,12 @@ class Animal {
         $this->proprio = $proprio;
     }
 
+    public function getGamelle() {
+        return $this->gamelle;
+    }
+
+    public function setGamelle($gamelle) {
+        $this->gamelle = $gamelle;
+    }
+    
 }
