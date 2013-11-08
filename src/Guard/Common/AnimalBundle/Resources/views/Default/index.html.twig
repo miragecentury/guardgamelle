@@ -49,9 +49,14 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         {% if animal.getGamelle() != null%}
-                                        Ma gamelle : {{animal.getGamelle().getLabel()}}
+                                            Ma gamelle : {{animal.getGamelle().getLabel()}} 
+                                            <a class="btn btn-danger" href="{{path('guard_common_animal_unlink',{"id":animal.getGamelle().getId()})}}"><i class=" glyphicon glyphicon-minus"></i> Unlink</a>
                                         {% else %}
-                                            //TODO link gamelle
+                                        //TODO link gamelle
+                                        <form class="form form-inline" action="" method="POST">
+                                            <input type="hidden" name="" id="" value="{{animal.getId()}}"/>
+                                            <button class="btn btn-danger" type="submit" value="unlink">Unlink</button>
+                                        </form>
                                         {% endif %}
                                     </div>
                                 </div>
@@ -65,8 +70,72 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <table class="table table-striped">
+                                    <table class="table table-striped table-condensed table-bordered table-responsive" style="text-align: center;">
+                                        {% if animal.getRace().getFoods()|length >0  %}
+                                        <tr>
+                                            <td>Age</td>
+                                            {% for food in animal.getRace().getFoods() %}
+                                                {% if food.getAge() != -1 %}
+                                            <td>{{food.getAge()}}</td>
+                                                {% else %}
+                                            <td><i class=" glyphicon glyphicon-asterisk"></i></td>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </tr>
+                                        <tr>
+                                            <td>Poid Normal kg</td>
+                                            {% for food in animal.getRace().getFoods() %}
+                                            <td>{{food.getPoidNormal()}}</td>
+                                            {% endfor %}
+                                        </tr>
+                                        <tr>
+                                            <td>Bilan Energétique /jours</td>
+                                            {% for food in animal.getRace().getFoods() %}
+                                            <td>{{food.getBilanEnergetiqueJour()}}</td>
+                                            {% endfor %}
+                                        </tr>
+                                        <tr><td></td></tr>
+                                        <tr>
+                                            <td>Huile de Soja</td>
+                                            {% for food in animal.getRace().getFoods() %}
+                                            <td>{{food.getHuileSojaRt()}}</td>
+                                            {% endfor %}
+                                        </tr>
+                                        <tr>
+                                            <td>Viande hachee</td>
+                                            {% for food in animal.getRace().getFoods() %}
+                                            <td>{{food.getViandehacheeRt()}}</td>
+                                            {% endfor %}
+                                        </tr>
+                                        <tr>
+                                            <td>Feculent</td>
+                                            {% for food in animal.getRace().getFoods() %}
+                                            <td>{{food.getFeculentRt()}}</td>
+                                            {% endfor %}
+                                        </tr>
+                                        <tr><td></td></tr>
+                                        <tr>
+                                            <td>CMV</td>
+                                            {% for food in animal.getRace().getFoods() %}
+                                            <td>{{food.getCmv()}}</td>
+                                            {% endfor %}
+                                        </tr>
+                                        <tr>
+                                            <td>rapport Prot/Cal</td>
+                                            {% for food in animal.getRace().getFoods() %}
+                                            <td>{{food.getRapportProtCal()}}</td>
+                                            {% endfor %}
+                                        </tr>
+                                        <tr>
+                                            <td>Beea</td>
+                                            {% for food in animal.getRace().getFoods() %}
+                                            <td>{{food.getBee()}}</td>
+                                            {% endfor %}
+                                        </tr>
 
+                                        {% else %}
+                                        <tr class="warning" style="text-align: center;"><td>non disponible pour la race</td></tr>
+                                        {% endif %}
                                     </table>
                                 </div>
                             </div>

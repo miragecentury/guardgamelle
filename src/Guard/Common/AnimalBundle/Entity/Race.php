@@ -82,5 +82,15 @@ class Race {
     public function setAnimaux($animaux) {
         $this->animaux = $animaux;
     }
+    
+    public function getFoods() {
+        return $this->foods;
+    }
+
+    public function setFoods($foods) {
+        $this->foods = $foods;
+    }
+
+
 
 }

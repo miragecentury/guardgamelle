@@ -4,6 +4,7 @@ namespace Guard\Common\GamelleBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Guard\Common\GamelleBundle\Entity\Gamelle;
+use Guard\Common\GamelleBundle\Form\GamelleType;
 
 class DefaultController extends Controller {
 

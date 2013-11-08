@@ -8,7 +8,6 @@ use Symfony\Component\Validator\Constraints as Upsert;
 use Guard\Common\GamelleBundle\Entity\Gamelle;
 use Guard\Common\EventBundle\Entity\EventGamelle;
 
-
 class DefaultController extends Controller {
 
     public function indexAction() {

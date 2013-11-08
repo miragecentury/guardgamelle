@@ -6,12 +6,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Guard\Common\AnimalBundle\Entity\Animal;
 use Guard\Common\AnimalBundle\Form\AnimalType;
 use Symfony\Component\HttpFoundation\Response;
+use Guard\Common\GamelleBundle\Entity\Gamelle;
 
 class DefaultController extends Controller {
 
     public function indexAction() {
         $animals = $this->container->get('security.context')->getToken()->getUser()->getAnimaux();
-        return $this->render('GuardCommonAnimalBundle:Default:index.html.twig', array('animals' => $animals));
+        $formb = $this->createFormBuilder();
+        $formb
+                ->add('animal')
+                ->add('gamelle')
+        ;
+        $form = $formb->getForm();
+        return $this->render('GuardCommonAnimalBundle:Default:index.html.twig', array('animals' => $animals, 'form' => $form));
     }
 
     public function newselecttypeAction() {
@@ -70,26 +77,18 @@ class DefaultController extends Controller {
             if ($form->isValid()) {
                 $Animal = $this->getDoctrine()->getManager()->getRepository("")->find($form->get('animal'));
                 $Gamelle = $this->getDoctrine()->getManager()->getRepository('')->find($form->get($form->get('gamelle')));
-                if (is_a($Animal, "Animal") && is_a($Gamelle, "Gamelle")) {
-                    
-                } else {
-                    
-                }
             }
         }
     }
 
-    public function unlinkAction($id_gamelle) {
-        $Gamelle = $this->getDoctrine()->getManager()->getRepository('')->find($id_gamelle);
-        if (is_a($Gamelle, "Gamelle")) {
-            $Gamelle->setAnimal(null);
-            $this->get('session')->getFlashBag()->add('link', 'Link supprimé');
-            return $this->redirect($this->generateUrl('guard_common_animal_homepage'));
-        } else {
-            $this->get('session')->getFlashBag()->add('link', 'Unlink error');
-            //return $this->redirect($this->generateUrl('guard_common_animal_homepage'));
-            return new Response("err");
-        }
+    public function unlinkAction($id) {
+        $Gamelle = $this->getDoctrine()->getManager()->getRepository('GuardCommonGamelleBundle:Gamelle')->find($id);
+        $Animal = $Gamelle->getAnimal();
+        $Animal->setGamelle(null);
+        $Gamelle->setAnimal(null);
+        $this->getDoctrine()->getManager()->flush();
+        $this->get('session')->getFlashBag()->add('link', 'Link supprimé');
+        return $this->redirect($this->generateUrl('guard_common_animal_homepage'));
     }
 
 }

@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Constraints as Upsert;
 use Guard\Common\EventBundle\Entity\EventBalance;
 use Guard\Common\GamelleBundle\Entity\Balance;
+use Guard\Common\AnimalBundle\Entity\Animal;
 
 class BalanceController extends Controller {
 
@@ -34,6 +35,11 @@ class BalanceController extends Controller {
                 $eventGamelle = new EventBalance();
                 $Gamelle = $this->getDoctrine()->getManager()->getRepository("GuardCommonGamelleBundle:Balance")->findOneBy(array('uid' => $request->id));
                 if ($Gamelle != null) {
+                    $Animal = $Gamelle->getAnimal();
+                    if ($Animal != null) {
+                        $Animal->setMasse($request->state);
+                        $this->getDoctrine()->getManager()->flush();
+                    }
                     $eventGamelle->setBalanceId($Gamelle->getId());
                     $eventGamelle->setDatetime((new \DateTime())->setTimestamp($request->date));
                     $eventGamelle->setState($request->state);

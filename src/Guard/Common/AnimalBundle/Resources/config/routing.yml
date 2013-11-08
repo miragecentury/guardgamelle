@@ -20,6 +20,11 @@ guard_common_animal_race_delete:
     defaults: { _controller:GuardCommonAnimalBundle:Race:delete }
     requirements:
         id: \d+
+guard_common_animal_unlink:
+    pattern: /animal/unlink/{id}
+    defaults: { _controller:GuardCommonAnimalBundle:Default:unlink }
+    requirements:
+        id: \d+
 #guard_common_animal_add:
 #    pattern: /animal/new
 #    defaults: {_controller: GuardCommonAnimalBundle:Default:new }
