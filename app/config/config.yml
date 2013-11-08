@@ -76,6 +76,7 @@ doctrine:
                     GuardCommonUserBundle: ~
                     GuardCommonPublicBundle: ~
                     GuardCommonGamelleBundle: ~
+                    GuardCommonHealthBundle: ~
             google:
                 connection: google
                 auto_mapping: false

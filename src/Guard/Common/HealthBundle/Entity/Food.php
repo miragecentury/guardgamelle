@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace Guard\Common\HealhBundle\Entity;
+namespace Guard\Common\HealthBundle\Entity;
 
 // On définit le namespace des annotations utilisées par Doctrine2
 // En effet, il existe d'autres annotations, on le verra par la suite, qui utiliseront un autre namespace
@@ -26,7 +26,7 @@ class Food {
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Race", inversedBy="foods")
+     * @ORM\ManyToOne(targetEntity="Guard\Common\AnimalBundle\Entity\Race", inversedBy="foods")
      * @ORM\JoinColumn(name="race_id", referencedColumnName="id")
      */
     protected $race;
@@ -67,7 +67,7 @@ class Food {
     protected $feculent_rt;
 
     /**
-     * @ORM\Column(name="cmv", type="string", length="30")
+     * @ORM\Column(name="cmv", type="string", length=30)
      */
     protected $cmv;
 
