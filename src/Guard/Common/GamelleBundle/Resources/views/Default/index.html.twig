@@ -8,7 +8,44 @@
 {% block main %}
 <div class="container">
     <div class="row">
-
+        <div class="col-md-12">
+            <a href="{{path('guard_common_gamelle_new')}}" class="btn btn-success"><i class=" glyphicon glyphicon-plus"></i> Ajouter une Gamelle</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nom</th>
+                        <th>UID</th>
+                        <th>Compagnon</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for gamelle in gamelles %}
+                    <tr>
+                        <td>{{gamelle.getId()}}</td>
+                        <td>{{gamelle.getNom()}}</td>
+                        <td>{{gamelle.getUid()}}</td>
+                        <td>{{dump(gamelle.getAnimal())}}</td>
+                        <td><a href="#" class="btn btn-danger">{{gamelle.getId()}}</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>#</th>
+                        <th>Nom</th>
+                        <th>UID</th>
+                        <th>Compagnon</th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
     </div>
 </div>
 {% endblock %}

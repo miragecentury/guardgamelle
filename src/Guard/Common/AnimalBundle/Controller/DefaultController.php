@@ -16,7 +16,8 @@ class DefaultController extends Controller {
     public function newselecttypeAction() {
         $repType = $this->getDoctrine()->getManager()->getRepository("GuardCommonAnimalBundle:Type");
         $types = $repType->findAll();
-        return $this->render('GuardCommonAnimalBundle:Default:selecttype.html.twig', array('types' => $types));
+        $animals = $this->container->get('security.context')->getToken()->getUser()->getAnimaux();
+        return $this->render('GuardCommonAnimalBundle:Default:selecttype.html.twig', array('types' => $types,'animals'=>$animals));
     }
 
     public function newAction($id_type) {

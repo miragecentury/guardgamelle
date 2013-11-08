@@ -12,11 +12,14 @@
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
                 <!-- Listing par nom des chiens #myanimal_{id} -->
-                <li class=""><a href="{{ path('guard_common_animal_homepage') }}#myanimaux_0" >Toto</a></li>
+                {% for animal in animals %}
+{#                <li class=""><a href="{{path('guard_common_animal_homepage')}}#myanimaux_{{animal.getId()}}">{{animal.getNom()}}</a></li>#}
+                <li class=""><a href="{{path('guard_common_animal_homepage')}}">{{animal.getNom()}}</a></li>
+                {% endfor %}
+
                 <li class="active"><a href="{{path('guard_common_animal_selectype')}}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> Ajouter un compagnon</a></li>
                 <li class="pull-right"><a class="btn btn-info" href="{{ path('guard_common_animal_race') }}"><i class="glyphicon glyphicon-list"></i> Race</a></li>
             </ul>
-
             <!-- Tab panes -->
             <div class="tab-content">
                 <div class="tab-pane active"> 
