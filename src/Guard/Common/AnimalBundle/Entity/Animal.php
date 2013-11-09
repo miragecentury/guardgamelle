@@ -140,7 +140,7 @@ class Animal {
     public function setGamelle($gamelle) {
         $this->gamelle = $gamelle;
     }
-    
+
     public function getBalance() {
         return $this->balance;
     }
@@ -149,11 +149,22 @@ class Animal {
         $this->balance = $balance;
     }
 
-    
-    /**********/
-    
-    public function getAgeInMonth()
-    {
-        
+    /*     * ******* */
+
+    public function getAgeInMonth() {
+        $datenai = $this->getDateNaissance();
+        $datenow = new \DateTime();
+        $interval = $datenow->diff($datenai, true);
+        $m = $interval->y * 12 + $interval->m;
+        return $m;
     }
+    
+    public function getAgeInYear(){
+        $datenai = $this->getDateNaissance();
+        $datenow = new \DateTime();
+        $interval = $datenow->diff($datenai, true);
+        $m = $interval->y;
+        return $m;
+    }
+
 }

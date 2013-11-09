@@ -43,14 +43,26 @@
                                             <tr><td>Sexe:</td><td>{% if animal.getSexe() == 0 %} Mâle {% else %} Femelle {% endif %}</td></tr>
                                             <tr><td>Race:</td><td>{{animal.getRace().getNom()}}</td></tr>
                                             <tr><td>Masse:</td><td>{{animal.getMasse()}}g</td></tr>
+                                            <tr><td>Date de N.</td><td>{{animal.getDateNaissance().format("d:m:Y")}}</td></tr>
+                                            <tr><td>Age en mois:</td><td>{{animal.getAgeInMonth()}}</td></tr>
+                                            {% if animal.getAgeInYear() != 0%}
+                                            <tr><td>Age en année:</td><td>{{animal.getAgeInYear()}}</td></tr>
+                                            {% endif }%
                                         </table>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
+
                                         {% if animal.getGamelle() != null%}
-                                        Ma gamelle : {{animal.getGamelle().getLabel()}} 
-                                        <a class="btn btn-danger" href="{{path('guard_common_animal_unlink',{"id":animal.getGamelle().getId()})}}"><i class=" glyphicon glyphicon-minus"></i> Unlink</a>
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                Ma gamelle : {{animal.getGamelle().getLabel()}} 
+                                            </div>
+                                            <div class="col-md-3">
+                                                <a class="btn btn-danger" href="{{path('guard_common_animal_unlink',{"id":animal.getGamelle().getId()})}}"><i class=" glyphicon glyphicon-minus"></i> Unlink</a>
+                                            </div>
+                                        </div>
                                         {% else %}
                                         <div class="row">
                                             <form class="form form-inline" action="{{path('guard_common_animal_link')}}" method="POST">

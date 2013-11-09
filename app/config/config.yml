@@ -54,11 +54,12 @@ doctrine:
                 charset:  UTF8
             google:
                 driver:   %database_driver%
-                host:     173.194.106.53
+                host:     %database_host%
                 port:     %database_port%
-                dbname:   guardgamelle
+                dbname:   guardgamellecloudsql
                 user:     root
-                password: gu4rdg4m3l
+#                password: gu4rdg4m3l
+                password: %database_password%
                 charset:  UTF8
             
                 
