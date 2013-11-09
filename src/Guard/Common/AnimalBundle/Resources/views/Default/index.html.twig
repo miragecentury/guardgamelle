@@ -47,14 +47,14 @@
                                             <tr><td>Age en mois:</td><td>{{animal.getAgeInMonth()}}</td></tr>
                                             {% if animal.getAgeInYear() != 0%}
                                             <tr><td>Age en année:</td><td>{{animal.getAgeInYear()}}</td></tr>
-                                            {% endif }%
+                                            {% endif %}
                                         </table>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
 
-                                        {% if animal.getGamelle() != null%}
+                                        {% if animal.getGamelle() != null %}
                                         <div class="row">
                                             <div class="col-md-9">
                                                 Ma gamelle : {{animal.getGamelle().getLabel()}} 
@@ -192,11 +192,11 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            ICICICICICICICICICICICICICICICICICICIC
-                            {{path("guard_common_animal_gamelle_test",{id:animal.getId()})}}
-                            {{path("guard_common_animal_balance_test",{id:animal.getId()})}}
                             <div id="container_{{animal.getId()}}">
                             </div>
+                            <script>
+                                mychart("#container_{{animal.getId()}}", "{{path("guard_common_animal_gamelle_test",{id:animal.getId()})}}", "{{path("guard_common_animal_balance_test",{id:animal.getId()})}}");
+                            </script>
                         </div>
                     </div>
                     <div class="row">
@@ -224,4 +224,12 @@
 
 {% block javascript %}
     {{parent()}}
+<script type="text/javascript" src="{{ asset('bundles/guard/js/exporting.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/guard/js/highstock.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/guard/js/stock-chart.js') }}"></script>
+
+<script>
+    mychart("#container_{{animal.getId()}}", "{{path("guard_common_animal_gamelle_test",{id:animal.getId()})}}", "{{path("guard_common_animal_balance_test",{id:animal.getId()})}}");
+</script>
+
 {% endblock %}
