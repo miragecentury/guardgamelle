@@ -26,7 +26,7 @@ class DefaultController extends Controller {
         ));
         $formb->add('animal');
         $form = $formb->getForm();
-        
+
         $animals = $this->container->get('security.context')->getToken()->getUser()->getAnimaux();
         $formb_b = $this->createFormBuilder();
         $formb_b->add('balance', 'entity', array(
@@ -46,7 +46,7 @@ class DefaultController extends Controller {
             $inputsAnimalsg[$animal->getId()] = $this->getDoctrine()->getManager('google')->getRepository("GuardCommonEventBundle:EventGamelle")->findBy(array('animal_id' => $animal->getId()));
         }
 
-        return $this->render('GuardCommonAnimalBundle:Default:index.html.twig', array('formb'=>$form_b->createView(),'animals' => $animals, 'form' => $form->createView(), 'inputsAnimalsg' => $inputsAnimalsg));
+        return $this->render('GuardCommonAnimalBundle:Default:index.html.twig', array('formb' => $form_b->createView(), 'animals' => $animals, 'form' => $form->createView(), 'inputsAnimalsg' => $inputsAnimalsg));
     }
 
     public function newselecttypeAction() {
@@ -94,7 +94,7 @@ class DefaultController extends Controller {
 
         $json = array();
         foreach ($EventGamelles as $eventG) {
-            array_push($json, $eventG->getState());
+            $json[] = $eventG->getState();
         }
 
         return new Response(json_encode($json));
@@ -115,7 +115,7 @@ class DefaultController extends Controller {
 
         $json = array();
         foreach ($EventBalances as $eventB) {
-            array_push($json, $eventB->getState());
+            $json[] = $eventB->getState();
         }
 
         return new Response(json_encode($json));

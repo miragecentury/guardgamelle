@@ -192,11 +192,10 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div id="container_{{animal.getId()}}">
+                            <div class="well">
+                                <div id="container_{{animal.getId()}}">
+                                </div>
                             </div>
-                            <script>
-                                mychart("#container_{{animal.getId()}}", "{{path("guard_common_animal_gamelle_test",{id:animal.getId()})}}", "{{path("guard_common_animal_balance_test",{id:animal.getId()})}}");
-                            </script>
                         </div>
                     </div>
                     <div class="row">
@@ -219,17 +218,16 @@
             </div>
         </div>
     </div>
+
 </div>
+<script>
+    {% for animal in animals %}
+    mychart("#container_{{animal.getId()}}", "{{path("guard_common_animal_gamelle_test",{id:animal.getId()})}}", "{{path("guard_common_animal_balance_test",{id:animal.getId()})}}");
+    {% endfor %}
+</script>
 {% endblock %}
 
 {% block javascript %}
     {{parent()}}
-<script type="text/javascript" src="{{ asset('bundles/guard/js/exporting.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bundles/guard/js/highstock.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bundles/guard/js/stock-chart.js') }}"></script>
-
-<script>
-    mychart("#container_{{animal.getId()}}", "{{path("guard_common_animal_gamelle_test",{id:animal.getId()})}}", "{{path("guard_common_animal_balance_test",{id:animal.getId()})}}");
-</script>
 
 {% endblock %}

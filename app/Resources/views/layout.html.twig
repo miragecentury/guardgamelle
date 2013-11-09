@@ -4,6 +4,11 @@
 
 {% block stylesheets %}
 <link rel="stylesheet" href="{{ asset('bundles/guard/css/bootstrap.css') }}" type="text/css" />
+<script type="text/javascript" src="{{ asset('bundles/guard/js/jquery-1.10.2.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/guard/js/bootstrap.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/guard/js/highstock.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/guard/js/exporting.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/guard/js/stock-chart.js') }}"></script>
 {% endblock %}
 
 {% block body %}
@@ -66,6 +71,5 @@
 
 {% block javascripts %}
 {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
-<script type="text/javascript" src="{{ asset('bundles/guard/js/jquery-1.10.2.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bundles/guard/js/bootstrap.js') }}"></script>
+
 {% endblock %}
